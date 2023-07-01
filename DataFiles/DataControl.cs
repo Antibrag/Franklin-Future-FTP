@@ -9,22 +9,30 @@ public static class Data
 public class CurrentLevel
 {
     private static string _LevelName = null;
-    private static sbyte _LevelId = -128;
+    private static int _LevelId = -128;
+    private static Vector3[] _GridSize;
 
     public static void SetLevelName(string newLevelName) { _LevelName = newLevelName; }
-    public static void SetLevelId(sbyte newLevelId) { _LevelId = newLevelId; }
+    public static void SetLevelId(int newLevelId) { _LevelId = newLevelId; }
+    public static void SetGridSize(Vector3[] newGridSize) { _GridSize = newGridSize; } 
 
     public static string GetLevelName()
     {
         if (String.IsNullOrEmpty(_LevelName)) 
-            GD.Print("Warning! Level name is not found! Please give a name for your level!");       
+            GD.PushWarning("Level name is not found! Please give a name for your level!");       
         return _LevelName;
     }
-    public static sbyte GetLevelId()
+    public static int GetLevelId()
     {
         if (_LevelId == -128)
-            GD.Print("Warning! Level id is not found! Please give id for your level!");
+            GD.PushWarning("Level id is not found! Please give id for your level!");
         return _LevelId;
+    }
+    public static Vector3[] GetGridSize()
+    {
+        if (_GridSize == null) 
+            GD.PushWarning("Grid size is not found! Please update level grid size!");
+        return _GridSize;
     }
 }
 
