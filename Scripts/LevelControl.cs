@@ -8,7 +8,8 @@ public partial class LevelControl : Node
 	{
         CurrentLevel.SetLevelName((string)GetMeta("LevelName"));
         CurrentLevel.SetLevelId((int)GetMeta("LevelId"));
-		GD.Print(CurrentLevel.GetGridSize());
+		CurrentLevel.SetLevelGridSize((Vector3[])GetMeta("GridSize"));
+		GD.Print(CurrentLevel.GetLevelGridSize());
         GD.Print(CurrentLevel.GetLevelName());
         GD.Print(CurrentLevel.GetLevelId());
     }

@@ -14,7 +14,7 @@ public class CurrentLevel
 
     public static void SetLevelName(string newLevelName) { _LevelName = newLevelName; }
     public static void SetLevelId(int newLevelId) { _LevelId = newLevelId; }
-    public static void SetGridSize(Vector3[] newGridSize) { _GridSize = newGridSize; } 
+    public static void SetLevelGridSize(Vector3[] newGridSize) { _GridSize = newGridSize; } 
 
     public static string GetLevelName()
     {
@@ -28,7 +28,7 @@ public class CurrentLevel
             GD.PushWarning("Level id is not found! Please give id for your level!");
         return _LevelId;
     }
-    public static Vector3[] GetGridSize()
+    public static Vector3[] GetLevelGridSize()
     {
         if (_GridSize == null) 
             GD.PushWarning("Grid size is not found! Please update level grid size!");

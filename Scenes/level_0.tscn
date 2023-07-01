@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://cj8ot6n7qyn1j"]
+[gd_scene load_steps=5 format=3 uid="uid://cj8ot6n7qyn1j"]
 
 [ext_resource type="Script" path="res://Scripts/LevelControl.cs" id="1_kbyjd"]
 
@@ -10,8 +10,6 @@ material = SubResource("StandardMaterial3D_fftbu")
 
 [sub_resource type="BoxMesh" id="BoxMesh_oi1ks"]
 size = Vector3(1, 1, 100)
-
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_ctswy"]
 
 [node name="Level-0" type="Node"]
 script = ExtResource("1_kbyjd")
@@ -97,7 +95,3 @@ skeleton = NodePath("../..")
 
 [node name="PlayerSpawn" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 0.8, 2.5)
-
-[node name="test" type="MeshInstance3D" parent="PlayerSpawn"]
-transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 0, 0, 0)
-mesh = SubResource("CapsuleMesh_ctswy")
