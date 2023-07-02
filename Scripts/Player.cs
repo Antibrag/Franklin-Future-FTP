@@ -17,8 +17,6 @@ public partial class Player : RigidBody3D {
 
     public override void _Process(double delta) {
         StatesControl(playerStates);
-        GD.Print("targetDirection = " + movementTarget.targetDirection + "\nLinearVelocity = " + 
-        LinearVelocity + "\nPlayer Position = " + Position + "\nPlayer state = " + playerStates + "\n");
     }
 
     private void StatesControl(States state) {
@@ -38,29 +36,44 @@ public partial class Player : RigidBody3D {
 
         if (direction != Vector3.Zero) {
             movementTarget.targetDirection = direction;
-            movementTarget.targetPosition = Position + movementTarget.targetDirection;
+            movementTarget.targetPosition = RoundVector(Position + movementTarget.targetDirection, 1);
             playerStates = States.MOVEMENT;
         }
     }
 
     private void Move() {
-        GD.Print("Target position = " + movementTarget.targetPosition);
-
-        if (Position != movementTarget.targetPosition)
+        if (movementTarget.targetPosition.X >= CurrentLevel.GetLevelGridSize()[0].X && movementTarget.targetPosition.X <= CurrentLevel.GetLevelGridSize()[1].X &&
+        movementTarget.targetPosition.Z >= CurrentLevel.GetLevelGridSize()[0].Z && movementTarget.targetPosition.Z <= CurrentLevel.GetLevelGridSize()[1].Z) {
+            if (RoundVector(Position, 1) != movementTarget.targetPosition)
                 LinearVelocity = movementTarget.targetDirection;
-            else
-                playerStates = States.NORMAL;
-
-        // if (targetPosition.X > CurrentLevel.GetLevelGridSize()[0].X && targetPosition.X < CurrentLevel.GetLevelGridSize()[1].X &&
-        // targetPosition.Z > CurrentLevel.GetLevelGridSize()[0].Z && targetPosition.Z < CurrentLevel.GetLevelGridSize()[1].Z)
-        // {
-            
-        // }
-        // else
-        // {
-        //     playerStates = States.NORMAL;
-        //     GD.PushWarning("Out of a world!");
-        // }
-
+            else {
+                LinearVelocity = Vector3.Zero;
+                playerStates = States.NORMAL;                
+            }
+        }
+        else {
+            playerStates = States.NORMAL;
+            GD.PushWarning("Out of a level!");
+        }
     }
+
+    //-------------------------------------------------------------------------------|
+    private static Vector3 RoundVector(Vector3 vector, int digits) {
+        Vector3 result = Vector3.Zero;
+        for (int i = 0; i < 3; i++) {
+            switch (i) {
+                case 0:
+                    result.X = MathF.Round(vector.X, digits);
+                    break;
+                case 1:
+                    result.Y = MathF.Round(vector.Y, digits);
+                    break;
+                case 2:
+                    result.Z = MathF.Round(vector.Z, digits);
+                    break;
+            }
+        }
+        return result;
+    }
+    //-------------------------------------------------------------------------------|
 }

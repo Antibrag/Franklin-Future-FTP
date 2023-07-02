@@ -15,7 +15,7 @@ size = Vector3(1, 1, 100)
 script = ExtResource("1_kbyjd")
 metadata/LevelName = "Test"
 metadata/LevelId = 0
-metadata/GridSize = PackedVector3Array(-2.5, 0, 2.5, 2.5, 0, -2.5)
+metadata/GridSize = PackedVector3Array(-2.5, 0, -2.5, 2.5, 0, 2.5)
 
 [node name="Plane" type="MeshInstance3D" parent="."]
 transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, 0)
