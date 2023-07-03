@@ -48,8 +48,8 @@ public partial class Player : RigidBody3D {
     private void Move() {
         //Limited target position, because player don't moved outside level
         // !! Can be optimization. Relocate if, to CheckPlayerInput(), which the player did not change the state in void !!
-        if (movementTarget.targetPosition.X >= CurrentLevel.GetLevelGridSize()[0].X && movementTarget.targetPosition.X <= CurrentLevel.GetLevelGridSize()[1].X &&
-        movementTarget.targetPosition.Z >= CurrentLevel.GetLevelGridSize()[0].Z && movementTarget.targetPosition.Z <= CurrentLevel.GetLevelGridSize()[1].Z)
+        if (movementTarget.targetPosition.X >= CurrentLevel.GetGridSize()[0].X && movementTarget.targetPosition.X <= CurrentLevel.GetGridSize()[1].X &&
+        movementTarget.targetPosition.Z >= CurrentLevel.GetGridSize()[0].Z && movementTarget.targetPosition.Z <= CurrentLevel.GetGridSize()[1].Z)
         {
             if (RoundVector(Position, 1) != movementTarget.targetPosition)
                 LinearVelocity = movementTarget.targetDirection;

@@ -5,8 +5,8 @@ public partial class LevelControl : Node
 {
 	public override void _Ready()
 	{
-        CurrentLevel.SetLevelName((string)GetMeta("LevelName"));
-        CurrentLevel.SetLevelId((int)GetMeta("LevelId"));
-		CurrentLevel.SetLevelGridSize((Vector3[])GetMeta("GridSize"));
+        CurrentLevel.SetName((string)GetMeta("LevelName"));
+        CurrentLevel.SetId((int)GetMeta("LevelId"));
+		CurrentLevel.SetGridSize((Vector3[])GetMeta("GridSize"));
     }
 }

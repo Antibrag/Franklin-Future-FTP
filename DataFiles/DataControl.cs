@@ -8,31 +8,33 @@ public static class Data
 
 public class CurrentLevel
 {
-    private static string _LevelName = null;
-    private static int _LevelId = -128;
-    private static Vector3[] _GridSize;
+    private static string Name = null;
+    private static int Id = -128;
+    private static Vector3[] GridSize;
+    //private static int _Steps = 0;
 
-    public static void SetLevelName(string newLevelName) { _LevelName = newLevelName; }
-    public static void SetLevelId(int newLevelId) { _LevelId = newLevelId; }
-    public static void SetLevelGridSize(Vector3[] newGridSize) { _GridSize = newGridSize; } 
+    public static void SetName(string newName) { Name = newName; }
+    public static void SetId(int newId) { Id = newId; }
+    public static void SetGridSize(Vector3[] newGridSize) { GridSize = newGridSize; } 
+    //public static void SetSteps(int steps)
 
-    public static string GetLevelName()
+    public static string GetName()
     {
-        if (String.IsNullOrEmpty(_LevelName)) 
+        if (String.IsNullOrEmpty(Name)) 
             GD.PushWarning("Level name is not found! Please give a name for your level!");       
-        return _LevelName;
+        return Name;
     }
-    public static int GetLevelId()
+    public static int GetId()
     {
-        if (_LevelId == -128)
+        if (Id == -128)
             GD.PushWarning("Level id is not found! Please give id for your level!");
-        return _LevelId;
+        return Id;
     }
-    public static Vector3[] GetLevelGridSize()
+    public static Vector3[] GetGridSize()
     {
-        if (_GridSize == null) 
+        if (GridSize == null) 
             GD.PushWarning("Grid size is not found! Please update level grid size!");
-        return _GridSize;
+        return GridSize;
     }
 }
 
