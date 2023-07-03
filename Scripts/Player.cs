@@ -40,21 +40,23 @@ public partial class Player : RigidBody3D {
     }
 
     private void CheckPlayerInput() {
+        if (LevelControl.CurrentSteps == 0) 
+            playerState = States.DEATH;
+
         //Get input direction from Input action
         Vector2 inputDir = Input.GetVector("ui_left", "ui_right", "ui_up", "ui_down");
         Vector3 direction = (Transform.Basis * new Vector3(inputDir.X, 0, inputDir.Y)).Normalized();
 
         if (direction != Vector3.Zero) {
-            movementTarget.targetDirection = direction;
-            movementTarget.targetPosition = RoundVector(Position + movementTarget.targetDirection, 1);  //Round target position to 10
-            playerState = States.MOVEMENT;
+            if (!(direction.X != 0 && direction.Z != 0)) {
+                movementTarget.targetDirection = direction;
+                movementTarget.targetPosition = RoundVector(Position + movementTarget.targetDirection, 1);  //Round target position to 10
+                playerState = States.MOVEMENT;
+            }            
         }
     }
 
     private void Move() {
-        if (CurrentLevel.GetSteps() < 0) 
-            playerState = States.DEATH;
-
         //Limited target position, because player don't moved outside level
         // !! Can be optimization. Relocate if, to CheckPlayerInput(), which the player did not change the state in void !!
         if (movementTarget.targetPosition.X >= CurrentLevel.GetGridSize()[0].X && movementTarget.targetPosition.X <= CurrentLevel.GetGridSize()[1].X &&
@@ -64,6 +66,8 @@ public partial class Player : RigidBody3D {
                 LinearVelocity = movementTarget.targetDirection;
             else {
                 LinearVelocity = Vector3.Zero;
+                LevelControl.CurrentSteps--;
+                GD.Print(LevelControl.CurrentSteps);
                 playerState = States.NORMAL;                
             }
         }
@@ -74,7 +78,8 @@ public partial class Player : RigidBody3D {
     }
 
     private void Death() {
-        Position = GetNode<Node3D>("res://Main/Level-" + CurrentLevel.GetId() + "/PlayerSpawnPoint").Position;
+        GD.Print("Death");
+        Position = GetNode<Node3D>("/root/Main/Level-" + CurrentLevel.GetId() + "/PlayerSpawnPoint").Position;
         LevelControl.CurrentSteps = CurrentLevel.GetSteps();
         playerState = States.NORMAL;
     }
