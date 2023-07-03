@@ -1,16 +1,16 @@
 using Godot;
 using System;
 
-//Test Commit
-
+//Player states
 enum States {
-    NORMAL,
-    MOVEMENT
+    NORMAL,     //Player can pressed movement buttons 
+    MOVEMENT    //player can't pressed movement buttons, but player mesh moved
 }
 
+//Structure target, has target properties
 struct Target {
-    public Vector3 targetDirection;
-    public Vector3 targetPosition;
+    public Vector3 targetDirection;     //Target direction - direction where player moved
+    public Vector3 targetPosition;      //Target position - position where player moved
 }
 
 public partial class Player : RigidBody3D {
@@ -18,9 +18,10 @@ public partial class Player : RigidBody3D {
     private Target movementTarget;
 
     public override void _Process(double delta) {
-        StatesControl(playerStates);
+        StatesControl(playerStates);    //State system
     }
 
+    //Realization state system
     private void StatesControl(States state) {
         switch (state) {
             case States.NORMAL:
@@ -33,19 +34,23 @@ public partial class Player : RigidBody3D {
     }
 
     private void CheckPlayerInput() {
+        //Get input direction from Input action
         Vector2 inputDir = Input.GetVector("ui_left", "ui_right", "ui_up", "ui_down");
         Vector3 direction = (Transform.Basis * new Vector3(inputDir.X, 0, inputDir.Y)).Normalized();
 
         if (direction != Vector3.Zero) {
             movementTarget.targetDirection = direction;
-            movementTarget.targetPosition = RoundVector(Position + movementTarget.targetDirection, 1);
+            movementTarget.targetPosition = RoundVector(Position + movementTarget.targetDirection, 1);  //Round target position to 10
             playerStates = States.MOVEMENT;
         }
     }
 
     private void Move() {
+        //Limited target position, because player don't moved outside level
+        // !! Can be optimization. Relocate if, to CheckPlayerInput(), which the player did not change the state in void !!
         if (movementTarget.targetPosition.X >= CurrentLevel.GetLevelGridSize()[0].X && movementTarget.targetPosition.X <= CurrentLevel.GetLevelGridSize()[1].X &&
-        movementTarget.targetPosition.Z >= CurrentLevel.GetLevelGridSize()[0].Z && movementTarget.targetPosition.Z <= CurrentLevel.GetLevelGridSize()[1].Z) {
+        movementTarget.targetPosition.Z >= CurrentLevel.GetLevelGridSize()[0].Z && movementTarget.targetPosition.Z <= CurrentLevel.GetLevelGridSize()[1].Z)
+        {
             if (RoundVector(Position, 1) != movementTarget.targetPosition)
                 LinearVelocity = movementTarget.targetDirection;
             else {
@@ -59,7 +64,9 @@ public partial class Player : RigidBody3D {
         }
     }
 
-    //-------------------------------------------------------------------------------|
+    //I did realezation round vector, because I don't find working function
+    //Vector3.Ceil() - dont fits, because he rounded vector to whole
+    //Me need rounded Vector3 to 10
     private static Vector3 RoundVector(Vector3 vector, int digits) {
         Vector3 result = Vector3.Zero;
         for (int i = 0; i < 3; i++) {
@@ -77,5 +84,4 @@ public partial class Player : RigidBody3D {
         }
         return result;
     }
-    //-------------------------------------------------------------------------------|
 }
