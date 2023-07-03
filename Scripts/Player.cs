@@ -15,11 +15,11 @@ struct Target {
 }
 
 public partial class Player : RigidBody3D {
-    private States playerStates = States.NORMAL;
+    private States playerState = States.NORMAL;
     private Target movementTarget;
 
     public override void _Process(double delta) {
-        StatesControl(playerStates);    //State system
+        StatesControl(playerState);    //State system
     }
 
     //Realization state system
@@ -27,10 +27,15 @@ public partial class Player : RigidBody3D {
         switch (state) {
             case States.NORMAL:
                 CheckPlayerInput();
-                break;
+            break;
+
             case States.MOVEMENT:
                 Move();
-                break;
+            break;
+
+            case States.DEATH:
+                Death();
+            break;
         }
     }
 
@@ -42,13 +47,13 @@ public partial class Player : RigidBody3D {
         if (direction != Vector3.Zero) {
             movementTarget.targetDirection = direction;
             movementTarget.targetPosition = RoundVector(Position + movementTarget.targetDirection, 1);  //Round target position to 10
-            playerStates = States.MOVEMENT;
+            playerState = States.MOVEMENT;
         }
     }
 
     private void Move() {
-        //if (CurrentLevel.GetSteps() < 0)
-
+        if (CurrentLevel.GetSteps() < 0) 
+            playerState = States.DEATH;
 
         //Limited target position, because player don't moved outside level
         // !! Can be optimization. Relocate if, to CheckPlayerInput(), which the player did not change the state in void !!
@@ -59,13 +64,19 @@ public partial class Player : RigidBody3D {
                 LinearVelocity = movementTarget.targetDirection;
             else {
                 LinearVelocity = Vector3.Zero;
-                playerStates = States.NORMAL;                
+                playerState = States.NORMAL;                
             }
         }
         else {
-            playerStates = States.NORMAL;
+            playerState = States.NORMAL;
             GD.PushWarning("Out of a level!");
         }
+    }
+
+    private void Death() {
+        Position = GetNode<Node3D>("res://Main/Level-" + CurrentLevel.GetId() + "/PlayerSpawnPoint").Position;
+        LevelControl.CurrentSteps = CurrentLevel.GetSteps();
+        playerState = States.NORMAL;
     }
 
     //I did realezation round vector, because I don't find working function
