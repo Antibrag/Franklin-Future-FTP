@@ -18,6 +18,10 @@ public partial class Player : RigidBody3D {
     private States playerState = States.NORMAL;
     private Target movementTarget;
 
+    public override void _Ready() {
+        Position = GetNode<Node3D>("/root/Main/Level-" + CurrentLevel.GetId() + "/PlayerSpawnPoint").Position;
+    }
+
     public override void _Process(double delta) {
         StatesControl(playerState);    //State system
     }
