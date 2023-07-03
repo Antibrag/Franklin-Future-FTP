@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://cj8ot6n7qyn1j"]
 
-[ext_resource type="Script" path="res://Scripts/LevelControl.cs" id="1_kbyjd"]
+[ext_resource type="PackedScene" uid="uid://d4b6pkggue8vb" path="res://Scenes/level_data.tscn" id="1_ecj1q"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fftbu"]
 albedo_color = Color(0.203922, 0.203922, 0.203922, 1)
@@ -12,9 +12,9 @@ material = SubResource("StandardMaterial3D_fftbu")
 size = Vector3(1, 1, 100)
 
 [node name="Level-0" type="Node"]
-script = ExtResource("1_kbyjd")
+
+[node name="LevelData" parent="." instance=ExtResource("1_ecj1q")]
 metadata/LevelName = "Test"
-metadata/LevelId = 0
 metadata/GridSize = PackedVector3Array(-2.5, 0, -2.5, 2.5, 0, 2.5)
 
 [node name="Plane" type="MeshInstance3D" parent="."]
