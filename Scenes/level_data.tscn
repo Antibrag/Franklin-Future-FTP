@@ -4,6 +4,7 @@
 
 [node name="LevelData" type="Node"]
 script = ExtResource("1_v6xrg")
-metadata/LevelName = ""
-metadata/LevelId = 0
+metadata/Name = ""
+metadata/Id = 0
 metadata/GridSize = PackedVector3Array(0, 0, 0, 0, 0, 0)
+metadata/Steps = 0

@@ -14,7 +14,7 @@ size = Vector3(1, 1, 100)
 [node name="Level-0" type="Node"]
 
 [node name="LevelData" parent="." instance=ExtResource("1_ecj1q")]
-metadata/LevelName = "Test"
+metadata/Name = "Test"
 metadata/GridSize = PackedVector3Array(-2.5, 0, -2.5, 2.5, 0, 2.5)
 metadata/Steps = 10
 
