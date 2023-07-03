@@ -3,6 +3,7 @@ using System;
 
 public partial class LevelControl : Node
 {
+    public static int CurrentSteps = CurrentLevel.GetSteps();
 	public override void _Ready()
 	{
         CurrentLevel.SetName((string)GetMeta("Name"));
