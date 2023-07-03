@@ -4,7 +4,8 @@ using System;
 //Player states
 enum States {
     NORMAL,     //Player can pressed movement buttons 
-    MOVEMENT    //player can't pressed movement buttons, but player mesh moved
+    MOVEMENT,   //player can't pressed movement buttons, but player mesh moved
+    DEATH       //Player can't pressed movement buttons, player mesy replaced to player spawn
 }
 
 //Structure target, has target properties
@@ -46,6 +47,9 @@ public partial class Player : RigidBody3D {
     }
 
     private void Move() {
+        //if (CurrentLevel.GetSteps() < 0)
+
+
         //Limited target position, because player don't moved outside level
         // !! Can be optimization. Relocate if, to CheckPlayerInput(), which the player did not change the state in void !!
         if (movementTarget.targetPosition.X >= CurrentLevel.GetGridSize()[0].X && movementTarget.targetPosition.X <= CurrentLevel.GetGridSize()[1].X &&
