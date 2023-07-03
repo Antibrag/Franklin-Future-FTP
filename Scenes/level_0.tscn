@@ -16,6 +16,7 @@ size = Vector3(1, 1, 100)
 [node name="LevelData" parent="." instance=ExtResource("1_ecj1q")]
 metadata/LevelName = "Test"
 metadata/GridSize = PackedVector3Array(-2.5, 0, -2.5, 2.5, 0, 2.5)
+metadata/Steps = 10
 
 [node name="Plane" type="MeshInstance3D" parent="."]
 transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, 0)
