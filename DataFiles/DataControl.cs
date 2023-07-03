@@ -11,12 +11,12 @@ public class CurrentLevel
     private static string Name = null;
     private static int Id = -128;
     private static Vector3[] GridSize;
-    //private static int _Steps = 0;
+    private static int Steps = -128;
 
     public static void SetName(string newName) { Name = newName; }
     public static void SetId(int newId) { Id = newId; }
     public static void SetGridSize(Vector3[] newGridSize) { GridSize = newGridSize; } 
-    //public static void SetSteps(int steps)
+    public static void SetSteps(int steps) { Steps = steps; }
 
     public static string GetName()
     {
@@ -35,6 +35,12 @@ public class CurrentLevel
         if (GridSize == null) 
             GD.PushWarning("Grid size is not found! Please update level grid size!");
         return GridSize;
+    }
+    public static int GetSteps() 
+    {
+        if (Steps == -128)
+            GD.PushWarning("Count steps is not found! Please update level count steps!");
+        return Steps;
     }
 }
 
