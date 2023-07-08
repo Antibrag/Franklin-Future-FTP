@@ -19,7 +19,7 @@ public partial class Player : RigidBody3D {
     private Target movementTarget;
 
     public override void _Ready() {
-        Position = GetNode<Node3D>("/root/Main/Level-" + CurrentLevel.GetId() + "/PlayerSpawnPoint").Position;
+        Position = GetNode<Node3D>("/root/Main/Level-" + CurrentLevel.GetId() + "/Spawn").Position;
     }
 
     public override void _Process(double delta) {
@@ -83,7 +83,7 @@ public partial class Player : RigidBody3D {
 
     private void Death() {
         GD.Print("Death");
-        Position = GetNode<Node3D>("/root/Main/Level-" + CurrentLevel.GetId() + "/PlayerSpawnPoint").Position;
+        Position = GetNode<Node3D>("/root/Main/Level-" + CurrentLevel.GetId() + "/Spawn").Position;
         LevelControl.CurrentSteps = CurrentLevel.GetSteps();
         playerState = States.NORMAL;
     }
