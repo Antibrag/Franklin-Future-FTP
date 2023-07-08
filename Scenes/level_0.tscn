@@ -1,15 +1,9 @@
 [gd_scene load_steps=5 format=3 uid="uid://cj8ot6n7qyn1j"]
 
 [ext_resource type="PackedScene" uid="uid://d4b6pkggue8vb" path="res://Scenes/level_data.tscn" id="1_ecj1q"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fftbu"]
-albedo_color = Color(0.203922, 0.203922, 0.203922, 1)
-
-[sub_resource type="PlaneMesh" id="PlaneMesh_msrdc"]
-material = SubResource("StandardMaterial3D_fftbu")
-
-[sub_resource type="BoxMesh" id="BoxMesh_oi1ks"]
-size = Vector3(1, 1, 100)
+[ext_resource type="PackedScene" uid="uid://doqsiaowhe3as" path="res://Scenes/plane.tscn" id="2_ot546"]
+[ext_resource type="PackedScene" uid="uid://bo2pdgp0ptin5" path="res://Scenes/finish.tscn" id="3_yjmsy"]
+[ext_resource type="PackedScene" uid="uid://diw1rkoanbhuu" path="res://Scenes/spawn.tscn" id="4_ybfm7"]
 
 [node name="Level-0" type="Node"]
 
@@ -18,81 +12,10 @@ metadata/Name = "Test"
 metadata/GridSize = PackedVector3Array(-2.5, 0, -2.5, 2.5, 0, 2.5)
 metadata/Steps = 10
 
-[node name="Plane" type="MeshInstance3D" parent="."]
-transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, 0)
-mesh = SubResource("PlaneMesh_msrdc")
+[node name="Plane" parent="." instance=ExtResource("2_ot546")]
 
-[node name="Grid" type="Node3D" parent="Plane"]
+[node name="Finish" parent="." instance=ExtResource("3_yjmsy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 1, -2.5)
 
-[node name="Board_Z" type="MeshInstance3D" parent="Plane/Grid"]
-transform = Transform3D(0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, 0, 0.01, 0)
-mesh = SubResource("BoxMesh_oi1ks")
-skeleton = NodePath("../..")
-
-[node name="Board_Z2" type="MeshInstance3D" parent="Plane/Grid"]
-transform = Transform3D(0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, 0.333333, 0.01, 0)
-mesh = SubResource("BoxMesh_oi1ks")
-skeleton = NodePath("../..")
-
-[node name="Board_Z3" type="MeshInstance3D" parent="Plane/Grid"]
-transform = Transform3D(0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, 0.666667, 0.01, 0)
-mesh = SubResource("BoxMesh_oi1ks")
-skeleton = NodePath("../..")
-
-[node name="Board_Z4" type="MeshInstance3D" parent="Plane/Grid"]
-transform = Transform3D(0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, 1, 0.01, 0)
-mesh = SubResource("BoxMesh_oi1ks")
-skeleton = NodePath("../..")
-
-[node name="Board_Z5" type="MeshInstance3D" parent="Plane/Grid"]
-transform = Transform3D(0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, -0.333333, 0.01, 0)
-mesh = SubResource("BoxMesh_oi1ks")
-skeleton = NodePath("../..")
-
-[node name="Board_Z6" type="MeshInstance3D" parent="Plane/Grid"]
-transform = Transform3D(0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, -0.666667, 0.01, 0)
-mesh = SubResource("BoxMesh_oi1ks")
-skeleton = NodePath("../..")
-
-[node name="Board_Z7" type="MeshInstance3D" parent="Plane/Grid"]
-transform = Transform3D(0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, -1, 0.01, 0)
-mesh = SubResource("BoxMesh_oi1ks")
-skeleton = NodePath("../..")
-
-[node name="Board_X" type="MeshInstance3D" parent="Plane/Grid"]
-transform = Transform3D(-8.74228e-10, 0, -0.02, 0, 0.02, 0, 0.02, 0, -8.74228e-10, 0, 0.01, 0)
-mesh = SubResource("BoxMesh_oi1ks")
-skeleton = NodePath("../..")
-
-[node name="Board_X2" type="MeshInstance3D" parent="Plane/Grid"]
-transform = Transform3D(-8.74228e-10, 0, -0.02, 0, 0.02, 0, 0.02, 0, -8.74228e-10, 0, 0.01, -0.333333)
-mesh = SubResource("BoxMesh_oi1ks")
-skeleton = NodePath("../..")
-
-[node name="Board_X3" type="MeshInstance3D" parent="Plane/Grid"]
-transform = Transform3D(-8.74228e-10, 0, -0.02, 0, 0.02, 0, 0.02, 0, -8.74228e-10, 0, 0.01, 0.333333)
-mesh = SubResource("BoxMesh_oi1ks")
-skeleton = NodePath("../..")
-
-[node name="Board_X4" type="MeshInstance3D" parent="Plane/Grid"]
-transform = Transform3D(-8.74228e-10, 0, -0.02, 0, 0.02, 0, 0.02, 0, -8.74228e-10, 0, 0.01, 0.666667)
-mesh = SubResource("BoxMesh_oi1ks")
-skeleton = NodePath("../..")
-
-[node name="Board_X5" type="MeshInstance3D" parent="Plane/Grid"]
-transform = Transform3D(-8.74228e-10, 0, -0.02, 0, 0.02, 0, 0.02, 0, -8.74228e-10, 0, 0.01, -0.666667)
-mesh = SubResource("BoxMesh_oi1ks")
-skeleton = NodePath("../..")
-
-[node name="Board_X6" type="MeshInstance3D" parent="Plane/Grid"]
-transform = Transform3D(-8.74228e-10, 0, -0.02, 0, 0.02, 0, 0.02, 0, -8.74228e-10, 0, 0.01, 1)
-mesh = SubResource("BoxMesh_oi1ks")
-skeleton = NodePath("../..")
-
-[node name="Board_X7" type="MeshInstance3D" parent="Plane/Grid"]
-transform = Transform3D(-8.74228e-10, 0, -0.02, 0, 0.02, 0, 0.02, 0, -8.74228e-10, 0, 0.01, -1)
-mesh = SubResource("BoxMesh_oi1ks")
-skeleton = NodePath("../..")
-
-[node name="PlayerSpawnPoint" type="Node3D" parent="."]
+[node name="Spawn" parent="." instance=ExtResource("4_ybfm7")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 1, 2.5)
