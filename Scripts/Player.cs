@@ -20,7 +20,7 @@ public partial class Player : RigidBody3D {
     private Target movementTarget;
 
     public override void _Ready() {
-        Position = GetNode<Node3D>("/root/Main/Level-" + CurrentLevel.GetId() + "/Spawn").Position;
+        Position = GetNode<Node3D>("/root/Main/Level-" + CurrentLevel.Id + "/Spawn").Position;
     }
 
     public override void _Process(double delta) {
@@ -53,8 +53,8 @@ public partial class Player : RigidBody3D {
             movementTarget.targetDirection = direction;
             movementTarget.targetPosition = RoundVector(Position + movementTarget.targetDirection, 1);  //Round target position to 10
 
-            if (movementTarget.targetPosition.X >= CurrentLevel.GetGridSize()[0].X && movementTarget.targetPosition.X <= CurrentLevel.GetGridSize()[1].X &&
-            movementTarget.targetPosition.Z >= CurrentLevel.GetGridSize()[0].Z && movementTarget.targetPosition.Z <= CurrentLevel.GetGridSize()[1].Z) {
+            if (movementTarget.targetPosition.X >= CurrentLevel.GridSize[0].X && movementTarget.targetPosition.X <= CurrentLevel.GridSize[1].X &&
+            movementTarget.targetPosition.Z >= CurrentLevel.GridSize[0].Z && movementTarget.targetPosition.Z <= CurrentLevel.GridSize[1].Z) {
                 LevelControl.CurrentSteps--;
 
                 if (LevelControl.CurrentSteps < 0) {
@@ -85,8 +85,8 @@ public partial class Player : RigidBody3D {
 
     private void Death() {
         GD.Print("Death");
-        Position = GetNode<Node3D>("/root/Main/Level-" + CurrentLevel.GetId() + "/Spawn").Position;
-        LevelControl.CurrentSteps = CurrentLevel.GetSteps();
+        Position = GetNode<Node3D>("/root/Main/Level-" + CurrentLevel.Id + "/Spawn").Position;
+        LevelControl.CurrentSteps = CurrentLevel.Steps;
         playerState = States.NORMAL;
     }
 
