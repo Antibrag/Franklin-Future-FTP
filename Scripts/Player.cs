@@ -5,7 +5,8 @@ using System;
 enum States {
     NORMAL,     //Player can pressed movement buttons 
     MOVEMENT,   //player can't pressed movement buttons, but player mesh moved
-    DEATH       //Player can't pressed movement buttons, player mesy replaced to player spawn
+    DEATH,       //Player can't pressed movement buttons, player mesy replaced to player spawn
+    OUT_WORLD
 }
 
 //Structure target, has target properties
@@ -60,7 +61,7 @@ public partial class Player : RigidBody3D {
                     playerState = States.DEATH;
                     return;
                 } 
-                
+
                 playerState = States.MOVEMENT; 
             }  
             else 
@@ -79,15 +80,22 @@ public partial class Player : RigidBody3D {
             LinearVelocity = Vector3.Zero;
             GD.Print(LevelControl.CurrentSteps);
             playerState = States.NORMAL;                
-        }
-        
-        
+        }                
     }
 
     private void Death() {
         GD.Print("Death");
         Position = GetNode<Node3D>("/root/Main/Level-" + CurrentLevel.GetId() + "/Spawn").Position;
         LevelControl.CurrentSteps = CurrentLevel.GetSteps();
+        playerState = States.NORMAL;
+    }
+
+    public void LeaveFromLevel() {
+        LinearVelocity = Vector3.Zero;
+        playerState = States.OUT_WORLD;
+    }
+
+    public void EnterInLevel() {
         playerState = States.NORMAL;
     }
 
