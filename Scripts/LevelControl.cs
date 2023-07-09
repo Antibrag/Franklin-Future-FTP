@@ -1,18 +1,18 @@
 using Godot;
 using System;
 
-public static class CurrentLevel
+public struct Level
 {
-    public static string Name { get; set; } = "";
-    public static int Id { get; set; } = -1;
-    public static Vector3[] GridSize { get; set; } = new Vector3[2];
-    public static int Steps { get; set; } = -1;
-
+    public string Name { get; set; }
+    public int Id { get; set; } 
+    public Vector3[] GridSize { get; set; } 
+    public int Steps { get; set; } 
 }
 
 public partial class LevelControl : Node
 {
     public static int CurrentSteps = CurrentLevel.Steps;
+    public static Level CurrentLevel = new();
 	public override void _Ready()
 	{
         CurrentLevel.Name = (string)GetMeta("Name");
