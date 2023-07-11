@@ -7,12 +7,22 @@ public struct Level
     public int Id { get; set; } 
     public Vector3[] GridSize { get; set; } 
     public int Steps { get; set; } 
+
+    public Level(string name, int id, Vector3[] gridSize, int steps) {
+        Name = name;
+        Id = id;
+        GridSize = gridSize;
+        Steps = steps;
+    }
 }
 
 public partial class LevelControl : Node
 {
+    public static Level[] Levels = new Level[11];
+
     public static int CurrentSteps = CurrentLevel.Steps;
     public static Level CurrentLevel = new();
+
 	public override void _Ready()
 	{
         CurrentLevel.Name = (string)GetMeta("Name");
