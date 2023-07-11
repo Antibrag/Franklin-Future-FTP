@@ -55,6 +55,14 @@ public partial class Player : RigidBody3D {
 
             if (movementTarget.targetPosition.X >= LevelControl.CurrentLevel.GridSize[0].X && movementTarget.targetPosition.X <= LevelControl.CurrentLevel.GridSize[1].X &&
             movementTarget.targetPosition.Z >= LevelControl.CurrentLevel.GridSize[0].Z && movementTarget.targetPosition.Z <= LevelControl.CurrentLevel.GridSize[1].Z) {
+                foreach (var objPath in LevelControl.CurrentLevel.ObjectsPaths)
+                {
+                    var obj = GetNode<Node3D>("/root/Main/Level-" + LevelControl.CurrentLevel.Id + ((string)objPath).Trim('.'));
+                    if (movementTarget.targetPosition.X == obj.Position.X && movementTarget.targetPosition.Z == obj.Position.Z)
+                        if (((string)obj.Name).Contains("Wall"))
+                            return;
+                }
+
                 LevelControl.CurrentSteps--;
 
                 if (LevelControl.CurrentSteps < 0) {
