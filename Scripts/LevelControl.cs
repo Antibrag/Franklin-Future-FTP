@@ -7,28 +7,33 @@ public struct Level
     public int Id { get; set; } 
     public Vector3[] GridSize { get; set; } 
     public int Steps { get; set; } 
+    public NodePath[] Objects { get; set; }
 
-    public Level(string name, int id, Vector3[] gridSize, int steps) {
+    public Level(string name, int id, Vector3[] gridSize, int steps, NodePath[] objects) {
         Name = name;
         Id = id;
         GridSize = gridSize;
         Steps = steps;
+        Objects = objects;
     }
 }
 
 public partial class LevelControl : Node
 {
     public static Level[] Levels = new Level[11];
-
-    public static int CurrentSteps = CurrentLevel.Steps;
     public static Level CurrentLevel = new();
+    public static int CurrentSteps = CurrentLevel.Steps;
 
-	public override void _Ready()
-	{
+    private void InitCurrentLevel() {
         CurrentLevel.Name = (string)GetMeta("Name");
         CurrentLevel.Id = (int)GetMeta("Id");
 		CurrentLevel.GridSize = (Vector3[])GetMeta("GridSize");
         CurrentLevel.Steps = (int)GetMeta("Steps");
+        CurrentLevel.Objects = (NodePath[])GetMeta("LevelObjects");
+    }
+
+	public override void _Ready() {
+        InitCurrentLevel();
         GetCurrentLevelInfo(); 
     }
 
