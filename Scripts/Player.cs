@@ -20,7 +20,7 @@ public partial class Player : RigidBody3D {
     private Target movementTarget;
 
     public override void _Ready() {
-        Position = GetNode<Node3D>("/root/Main/Level-" + LevelControl.CurrentLevel.Id + "/Spawn").Position;
+        Position = GetNode<Node3D>("/root/Main/Level-" + LevelControl.CurrentLevel.Id + "/LevelObjects/Spawn").Position;
     }
 
     public override void _Process(double delta) {
@@ -55,9 +55,8 @@ public partial class Player : RigidBody3D {
 
             if (movementTarget.targetPosition.X >= LevelControl.CurrentLevel.GridSize[0].X && movementTarget.targetPosition.X <= LevelControl.CurrentLevel.GridSize[1].X &&
             movementTarget.targetPosition.Z >= LevelControl.CurrentLevel.GridSize[0].Z && movementTarget.targetPosition.Z <= LevelControl.CurrentLevel.GridSize[1].Z) {
-                foreach (var objPath in LevelControl.CurrentLevel.ObjectsPaths)
-                {
-                    var obj = GetNode<Node3D>("/root/Main/Level-" + LevelControl.CurrentLevel.Id + ((string)objPath).Trim('.'));
+                foreach (var obj in LevelControl.CurrentLevel.Objects)
+                {                    
                     if (movementTarget.targetPosition.X == obj.Position.X && movementTarget.targetPosition.Z == obj.Position.Z)
                         if (((string)obj.Name).Contains("Wall"))
                             return;
@@ -93,7 +92,7 @@ public partial class Player : RigidBody3D {
 
     private void Death() {
         GD.Print("Death");
-        Position = GetNode<Node3D>("/root/Main/Level-" + LevelControl.CurrentLevel.Id + "/Spawn").Position;
+        Position = GetNode<Node3D>("/root/Main/Level-" + LevelControl.CurrentLevel.Id + "/LevelObjects/Spawn").Position;
         LevelControl.CurrentSteps = LevelControl.CurrentLevel.Steps;
         playerState = States.NORMAL;
     }
