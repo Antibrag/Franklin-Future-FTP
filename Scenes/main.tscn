@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://b0gvgl1dqdpws"]
+[gd_scene load_steps=5 format=3 uid="uid://b0gvgl1dqdpws"]
 
 [ext_resource type="PackedScene" uid="uid://cj8ot6n7qyn1j" path="res://Scenes/level_0.tscn" id="1_7gc2h"]
+[ext_resource type="PackedScene" uid="uid://d16vptgoyn2b5" path="res://Scenes/hud.tscn" id="1_jmm8t"]
 [ext_resource type="PackedScene" uid="uid://lc8bh7vyqx8" path="res://Scenes/player.tscn" id="2_8pauf"]
 
 [sub_resource type="Environment" id="Environment_tchex"]
@@ -8,6 +9,8 @@ background_mode = 1
 background_energy_multiplier = 0.5
 
 [node name="Main" type="Node"]
+
+[node name="HUD" parent="." instance=ExtResource("1_jmm8t")]
 
 [node name="Level-0" parent="." instance=ExtResource("1_7gc2h")]
 
