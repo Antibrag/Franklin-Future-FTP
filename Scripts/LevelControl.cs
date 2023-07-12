@@ -40,6 +40,7 @@ public partial class LevelControl : Node
 	public override void _Ready() {
         InitCurrentLevel(); 
         GetCurrentLevelInfo(); 
+        GetNode<HUD>("/root/Main/HUD").ShowLevelName(CurrentLevel.Name);
     }
 
     private static void GetCurrentLevelInfo() {
