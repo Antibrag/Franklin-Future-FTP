@@ -1,0 +1,59 @@
+[gd_scene load_steps=5 format=3 uid="uid://da2lvtq5fbrhy"]
+
+[ext_resource type="PackedScene" uid="uid://doqsiaowhe3as" path="res://Scenes/plane.tscn" id="2_ot546"]
+[ext_resource type="PackedScene" uid="uid://bo2pdgp0ptin5" path="res://Scenes/finish.tscn" id="3_yjmsy"]
+[ext_resource type="PackedScene" uid="uid://diw1rkoanbhuu" path="res://Scenes/spawn.tscn" id="4_ybfm7"]
+[ext_resource type="PackedScene" uid="uid://b251735pqmllb" path="res://Scenes/wall.tscn" id="5_kidn6"]
+
+[node name="Level--1" type="Node3D"]
+metadata/Name = "Test Level -1"
+metadata/Id = -1
+metadata/GridSize = PackedVector3Array(-2.5, 0, 2.5, 2.5, 0, -2.5)
+metadata/Steps = 10
+metadata/IsComplete = true
+
+[node name="Plane" parent="." instance=ExtResource("2_ot546")]
+
+[node name="LevelObjects" type="Node3D" parent="."]
+
+[node name="Finish" parent="LevelObjects" instance=ExtResource("3_yjmsy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 1, -2.5)
+
+[node name="Spawn" parent="LevelObjects" instance=ExtResource("4_ybfm7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 1, 2.5)
+
+[node name="Wall" parent="LevelObjects" instance=ExtResource("5_kidn6")]
+transform = Transform3D(1.07, 0, 0, 0, 1.07, 0, 0, 0, 1.07, -2.5, 0.5, 1.5)
+skeleton = NodePath("../..")
+
+[node name="Wall2" parent="LevelObjects" instance=ExtResource("5_kidn6")]
+transform = Transform3D(1.07, 0, 0, 0, 1.07, 0, 0, 0, 1.07, -2.5, 0.5, 0.5)
+skeleton = NodePath("../..")
+
+[node name="Wall3" parent="LevelObjects" instance=ExtResource("5_kidn6")]
+transform = Transform3D(1.07, 0, 0, 0, 1.07, 0, 0, 0, 1.07, -0.5, 0.5, 1.5)
+skeleton = NodePath("../..")
+
+[node name="Wall4" parent="LevelObjects" instance=ExtResource("5_kidn6")]
+transform = Transform3D(1.07, 0, 0, 0, 1.07, 0, 0, 0, 1.07, -0.5, 0.5, -0.5)
+skeleton = NodePath("../..")
+
+[node name="Wall5" parent="LevelObjects" instance=ExtResource("5_kidn6")]
+transform = Transform3D(1.07, 0, 0, 0, 1.07, 0, 0, 0, 1.07, 0.5, 0.5, -0.5)
+skeleton = NodePath("../..")
+
+[node name="Wall6" parent="LevelObjects" instance=ExtResource("5_kidn6")]
+transform = Transform3D(1.07, 0, 0, 0, 1.07, 0, 0, 0, 1.07, 1.5, 0.5, -0.5)
+skeleton = NodePath("../..")
+
+[node name="Wall7" parent="LevelObjects" instance=ExtResource("5_kidn6")]
+transform = Transform3D(-4.67712e-08, 0, 1.07, 0, 1.07, 0, -1.07, 0, -4.67712e-08, 1.5, 0.5, 2.5)
+skeleton = NodePath("../..")
+
+[node name="Wall8" parent="LevelObjects" instance=ExtResource("5_kidn6")]
+transform = Transform3D(-4.67712e-08, 0, 1.07, 0, 1.07, 0, -1.07, 0, -4.67712e-08, 1.5, 0.5, -1.5)
+skeleton = NodePath("../..")
+
+[node name="Wall9" parent="LevelObjects" instance=ExtResource("5_kidn6")]
+transform = Transform3D(1.07, 0, 0, 0, 1.07, 0, 0, 0, 1.07, -0.5, 0.5, 0.5)
+skeleton = NodePath("../..")

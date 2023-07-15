@@ -5,9 +5,9 @@
 [ext_resource type="PackedScene" uid="uid://diw1rkoanbhuu" path="res://Scenes/spawn.tscn" id="4_ybfm7"]
 [ext_resource type="PackedScene" uid="uid://b251735pqmllb" path="res://Scenes/wall.tscn" id="5_kidn6"]
 
-[node name="Level-0" type="Node3D"]
-metadata/Name = "Test Level"
-metadata/Id = 0
+[node name="Level--2" type="Node3D"]
+metadata/Name = "Test Level -2"
+metadata/Id = -2
 metadata/GridSize = PackedVector3Array(-2.5, 0, 2.5, 2.5, 0, -2.5)
 metadata/Steps = 10
 metadata/IsComplete = false
