@@ -2,29 +2,36 @@ using Godot;
 using System;
 
 //Player states
-enum States {
+public enum States {
     NORMAL,     //Player can pressed movement buttons 
     MOVEMENT,   //player can't pressed movement buttons, but player mesh moved
     DEATH,       //Player can't pressed movement buttons, player mesy replaced to player spawn
     OUT_WORLD
 }
 
-//Structure target, has target properties
-struct Target {
+//Structure target, has target properties 
+public struct Target {
     public Vector3 targetDirection;     //Target direction - direction where player moved
     public Vector3 targetPosition;      //Target position - position where player moved
 }
 
 public partial class Player : RigidBody3D {
-    private States playerState = States.NORMAL;
+    public States playerState { get; set; }
     private Target movementTarget;
 
     public override void _Ready() {
-        Position = GetNode<Node3D>("/root/Main/Level-" + LevelControl.CurrentLevel.Id + "/LevelObjects/Spawn").Position;
+        Hide();
+        
+        playerState = States.OUT_WORLD;
     }
 
     public override void _Process(double delta) {
         StatesControl(playerState);    //State system
+    }
+
+    public void UnFreezePlayer() {
+        Position = GetNode<Node3D>("/root/Main/Level-" + LevelControl.CurrentLevel.Id + "/LevelObjects/Spawn").Position;
+        Show();
     }
 
     //Realization state system
@@ -57,9 +64,10 @@ public partial class Player : RigidBody3D {
             movementTarget.targetPosition.Z >= LevelControl.CurrentLevel.GridSize[0].Z && movementTarget.targetPosition.Z <= LevelControl.CurrentLevel.GridSize[1].Z) {
                 foreach (var obj in LevelControl.CurrentLevel.Objects)
                 {                    
-                    if (movementTarget.targetPosition.X == obj.Position.X && movementTarget.targetPosition.Z == obj.Position.Z)
+                    if (movementTarget.targetPosition.X == obj.Position.X && movementTarget.targetPosition.Z == obj.Position.Z) {
                         if (((string)obj.Name).Contains("Wall"))
-                            return;
+                            return;                     
+                    }
                 }
 
                 LevelControl.CurrentSteps--;
