@@ -15,9 +15,22 @@ run/main_scene="res://Scenes/main.tscn"
 config/features=PackedStringArray("4.0", "C#", "Forward Plus")
 config/icon="res://icon.svg"
 
+[autoload]
+
+LevelController="*res://Scenes/level_controller.tscn"
+
+[display]
+
+window/size/mode=3
+
 [dotnet]
 
 project/assembly_name="Franklin Future"
+
+[editor]
+
+movie_writer/movie_file="C:/Users/Anton/Документы/Godot Local Projects/Franklin Future/MovieFIles/Gameplay - Test level with walls.avi"
+movie_writer/disable_vsync=true
 
 [input]
 
