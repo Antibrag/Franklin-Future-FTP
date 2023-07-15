@@ -1,0 +1,12 @@
+[gd_scene load_steps=5 format=3 uid="uid://b40w4rdxutafm"]
+
+[ext_resource type="Script" path="res://Scripts/LevelControl.cs" id="1_xk38i"]
+[ext_resource type="PackedScene" uid="uid://cj8ot6n7qyn1j" path="res://Scenes/level_0.tscn" id="2_kgv0g"]
+[ext_resource type="PackedScene" uid="uid://b0gvgl1dqdpws" path="res://Scenes/main.tscn" id="3_dyf12"]
+[ext_resource type="PackedScene" uid="uid://da2lvtq5fbrhy" path="res://Scenes/level_1.tscn" id="3_eyefu"]
+
+[node name="LevelController" type="Node"]
+script = ExtResource("1_xk38i")
+Levels = Array[Resource]([ExtResource("2_kgv0g"), ExtResource("3_eyefu")])
+MainScene = ExtResource("3_dyf12")
+metadata/LevelsList = [ExtResource("2_kgv0g")]
