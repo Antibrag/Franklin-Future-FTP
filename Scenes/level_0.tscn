@@ -1,25 +1,23 @@
-[gd_scene load_steps=6 format=3 uid="uid://cj8ot6n7qyn1j"]
+[gd_scene load_steps=5 format=3 uid="uid://cj8ot6n7qyn1j"]
 
-[ext_resource type="PackedScene" uid="uid://d4b6pkggue8vb" path="res://Scenes/level_data.tscn" id="1_ecj1q"]
 [ext_resource type="PackedScene" uid="uid://doqsiaowhe3as" path="res://Scenes/plane.tscn" id="2_ot546"]
 [ext_resource type="PackedScene" uid="uid://bo2pdgp0ptin5" path="res://Scenes/finish.tscn" id="3_yjmsy"]
 [ext_resource type="PackedScene" uid="uid://diw1rkoanbhuu" path="res://Scenes/spawn.tscn" id="4_ybfm7"]
 [ext_resource type="PackedScene" uid="uid://b251735pqmllb" path="res://Scenes/wall.tscn" id="5_kidn6"]
 
-[node name="Level-0" type="Node"]
-
-[node name="LevelData" parent="." node_paths=PackedStringArray("LevelObjectsNode") instance=ExtResource("1_ecj1q")]
-LevelObjectsNode = NodePath("../LevelObjects")
-metadata/Name = "Test"
-metadata/GridSize = PackedVector3Array(-2.5, 0, -2.5, 2.5, 0, 2.5)
+[node name="Level-0" type="Node3D"]
+metadata/Name = "Test Level"
+metadata/Id = 0
+metadata/GridSize = PackedVector3Array(-2.5, 0, 2.5, 2.5, 0, -2.5)
 metadata/Steps = 10
+metadata/IsComplete = false
 
 [node name="Plane" parent="." instance=ExtResource("2_ot546")]
 
-[node name="LevelObjects" type="Node" parent="."]
+[node name="LevelObjects" type="Node3D" parent="."]
 
 [node name="Finish" parent="LevelObjects" instance=ExtResource("3_yjmsy")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 1, -2.5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 1, 2.5)
 
 [node name="Spawn" parent="LevelObjects" instance=ExtResource("4_ybfm7")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 1, 2.5)
@@ -59,5 +57,3 @@ skeleton = NodePath("../..")
 [node name="Wall9" parent="LevelObjects" instance=ExtResource("5_kidn6")]
 transform = Transform3D(1.07, 0, 0, 0, 1.07, 0, 0, 0, 1.07, -0.5, 0.5, 0.5)
 skeleton = NodePath("../..")
-
-[connection signal="body_entered" from="LevelObjects/Finish" to="LevelData" method="PlayerFinished"]
