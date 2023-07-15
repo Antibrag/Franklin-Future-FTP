@@ -13,7 +13,7 @@ public partial class HUD : Control
 		for (float i = 0; i <= 1; i += showSpeed)
         {
             obj.Modulate = new Color(obj.Modulate.R, obj.Modulate.G, obj.Modulate.B, i);
-            await ToSignal(GetTree().CreateTimer(0.05f), "timeout");
+            await ToSignal(GetTree().CreateTimer(0.01f), "timeout");
         }
 	}
 
@@ -21,7 +21,7 @@ public partial class HUD : Control
 		for (float i = 1; i >= 0; i -= showSpeed)
         {
             obj.Modulate = new Color(obj.Modulate.R, obj.Modulate.G, obj.Modulate.B, i);
-            await ToSignal(GetTree().CreateTimer(0.05f), "timeout");
+            await ToSignal(GetTree().CreateTimer(0.01f), "timeout");
         }
 		obj.Hide();
 	}
@@ -31,8 +31,8 @@ public partial class HUD : Control
 		LevelNameLabel.Text = name;
 
 		await ToSignal(GetTree().CreateTimer(1), "timeout");
-		ShowLabel(LevelNameLabel, 0.05f);
+		ShowLabel(LevelNameLabel, 0.01f);
 		await ToSignal(GetTree().CreateTimer(2), "timeout");
-		HideLabel(LevelNameLabel, 0.05f);
+		HideLabel(LevelNameLabel, 0.01f);
 	}
 }
