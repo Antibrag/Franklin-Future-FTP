@@ -32,47 +32,45 @@ public class Level
 
 public partial class LevelControl : Node
 {
-    [Export]
-    public PackedScene[] Levels;
-    [Export]
-    public PackedScene MainScene;
-
-    public Node3D LevelObjectsNode;
     public static Level CurrentLevel;
     public static int CurrentSteps;
-    private Node3D instanceLevel;
+    private Node3D[] LevelsContainer;
+    private Node3D LevelObjectsNode;
 
 	public override void _Ready() {
+        LevelsContainer = new Node3D[ GetNode<Node>("/root/Main/LevelContainer").GetChildCount()];
+        for (int i = 0; i < LevelsContainer.Length; i++)
+            LevelsContainer[i] = (Node3D)GetNode<Node>("/root/Main/LevelContainer").GetChild(i);
+
+        DataControl.LoadLevels(LevelsContainer);
         LoadLastLevel();
     }
 
-    public void LoadLastLevel() {
-        foreach (PackedScene level in Levels) {
-            var localScene = level.Instantiate();
-            if ((bool)localScene.GetMeta("IsComplete") == false) {
-                instanceLevel = (Node3D)localScene;
-                GetNode<Node>("/root/Main").AddChild(instanceLevel);
-
-                
-                return;
-            }
-            else 
-                localScene.Free();
+    private void LoadLastLevel()
+    {
+        foreach (Node3D level in LevelsContainer)
+        {
+            if ((bool)level.GetMeta("IsComplete") == false)
+                InitCurrentLevel(level);  
         }
-        GD.PrintErr("All scene has been completed!");
+        GetNode<Player>("/root/Main/Player").Show();
     }    
 
-    private void InitCurrentLevel() {
+    private void InitCurrentLevel(Node3D currentLevel) {
+        LevelObjectsNode = GetNode<Node3D>(currentLevel.GetPath() + "/LevelObjects");
         CurrentLevel = new(
-            (string)GetMeta("Name"),
-            (int)GetMeta("Id"),
-            (Vector3[])GetMeta("GridSize"),
-            (int)GetMeta("Steps"),
+            (string)currentLevel.GetMeta("Name"),
+            (int)currentLevel.GetMeta("Id"),
+            (Vector3[])currentLevel.GetMeta("GridSize"),
+            (int)currentLevel.GetMeta("Steps"),
             new Node3D[LevelObjectsNode.GetChildCount()]
         );
 
         for (int i = 0; i < CurrentLevel.Objects.Length; i++)
             CurrentLevel.Objects[i] = (Node3D)LevelObjectsNode.GetChild(i);
+        CurrentSteps = CurrentLevel.Steps;
+
+        currentLevel.Position = Vector3.Zero;
     }
 
     //NOTE!!!
