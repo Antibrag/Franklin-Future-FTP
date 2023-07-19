@@ -1,9 +1,12 @@
-[gd_scene load_steps=2 format=3 uid="uid://66n301ueoius"]
+[gd_scene load_steps=3 format=3 uid="uid://66n301ueoius"]
+
+[ext_resource type="Script" path="res://Scripts/menu.cs" id="1_phfhi"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_0afvq"]
 font_size = 64
 
 [node name="Menu" type="Node"]
+script = ExtResource("1_phfhi")
 
 [node name="ActivitiesMenu" type="Control" parent="."]
 layout_mode = 3
@@ -12,6 +15,15 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="Background" type="ColorRect" parent="ActivitiesMenu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.117647, 0.156863, 0.196078, 1)
 
 [node name="GameName" type="Label" parent="ActivitiesMenu"]
 layout_mode = 1
@@ -28,7 +40,7 @@ label_settings = SubResource("LabelSettings_0afvq")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Button" type="Button" parent="ActivitiesMenu"]
+[node name="StartButton" type="Button" parent="ActivitiesMenu"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -42,3 +54,5 @@ offset_bottom = 36.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "Start"
+
+[connection signal="pressed" from="ActivitiesMenu/StartButton" to="." method="OnStartButtonPressed"]
