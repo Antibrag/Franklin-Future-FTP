@@ -27,8 +27,7 @@ offset_top = 64.0
 offset_right = -64.0
 offset_bottom = 152.0
 grow_horizontal = 0
-text = "Steps
-Not Init"
+text = "Steps:"
 label_settings = SubResource("LabelSettings_uj5gj")
 horizontal_alignment = 1
 vertical_alignment = 1
