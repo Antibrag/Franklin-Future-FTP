@@ -1,37 +1,38 @@
 using Godot;
 using System;
 
-//Player states
-public enum States {
-    NORMAL,     //Player can pressed movement buttons 
-    MOVEMENT,   //player can't pressed movement buttons, but player mesh moved
-    DEATH,       //Player can't pressed movement buttons, player mesy replaced to player spawn
-    OUT_WORLD
-}
-
-//Structure target, has target properties 
-public struct Target {
-    public Vector3 targetDirection;     //Target direction - direction where player moved
-    public Vector3 targetPosition;      //Target position - position where player moved
-}
-
 public partial class Player : RigidBody3D {
-    public States playerState { get; set; }
+    //Player states
+    private enum States {
+        NORMAL,     //Player can pressed movement buttons 
+        MOVEMENT,   //player can't pressed movement buttons, but player mesh moved
+        DEATH,       //Player can't pressed movement buttons, player mesy replaced to player spawn
+        OUT_WORLD
+    }
+
+    //Structure target, has target properties 
+    private struct Target {
+        public Vector3 targetDirection;     //Target direction - direction where player moved
+        public Vector3 targetPosition;      //Target position - position where player moved
+    }
+
+    private States playerState { get; set; }
     private Target movementTarget;
 
     public override void _Ready() {
-        Hide();
-        
-        playerState = States.OUT_WORLD;
+        playerState = States.NORMAL;
     }
 
     public override void _Process(double delta) {
+        GD.Print(playerState);
         StatesControl(playerState);    //State system
     }
 
     public void UnFreezePlayer() {
-        Position = GetNode<Node3D>("/root/Main/Level-" + LevelControl.CurrentLevel.Id + "/LevelObjects/Spawn").Position;
         Show();
+        Position = GetNode<Node3D>("/root/Main/LevelContainer/Level-" + LevelControl.CurrentLevel.Id + "/LevelObjects/Spawn").Position;
+        playerState = States.NORMAL;
+        GD.Print(Position);
     }
 
     //Realization state system
@@ -100,7 +101,7 @@ public partial class Player : RigidBody3D {
 
     private void Death() {
         GD.Print("Death");
-        Position = GetNode<Node3D>("/root/Main/Level-" + LevelControl.CurrentLevel.Id + "/LevelObjects/Spawn").Position;
+        Position = GetNode<Node3D>("/root/Main/LevelContainer/Level-" + LevelControl.CurrentLevel.Id + "/LevelObjects/Spawn").Position;
         LevelControl.CurrentSteps = LevelControl.CurrentLevel.Steps;
         playerState = States.NORMAL;
     }
