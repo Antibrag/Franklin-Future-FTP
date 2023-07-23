@@ -16,7 +16,7 @@ public partial class Player : RigidBody3D {
         public Vector3 targetPosition;      //Target position - position where player moved
     }
 
-    private States playerState { get; set; }
+    private States playerState;
     private Target movementTarget;
 
     public override void _Ready() {
