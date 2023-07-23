@@ -5,12 +5,9 @@ public partial class menu : Node
 {
 	private Control ActivitiesMenu;
 
-	public override void _Ready()
-	{
-		ActivitiesMenu = GetNode<Control>("ActivitiesMenu");
-	}
+    public override void _Ready() => ActivitiesMenu = GetNode<Control>("ActivitiesMenu");
 
-	private async void HideControlComponent(Control control_node, double side_speed)
+    private async void HideControlComponent(Control control_node, double side_speed)
 	{
 		for (float i = control_node.Modulate.A; i >= 0; i -= 0.01f)
 		{
@@ -39,9 +36,6 @@ public partial class menu : Node
 		GetTree().ChangeSceneToFile("res://Scenes/main.tscn");
 	}
 
-	public void OnStartButtonPressed()
-	{
-		StartGame();
-	}
+    public void OnStartButtonPressed() => StartGame();
 }
 

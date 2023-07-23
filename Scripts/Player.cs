@@ -111,9 +111,7 @@ public partial class Player : RigidBody3D {
         playerState = States.OUT_WORLD;
     }
 
-    public void EnterInLevel() {
-        playerState = States.NORMAL;
-    }
+    public void EnterInLevel() => playerState = States.NORMAL;
 
     //I did realezation round vector, because I don't find working function
     //Vector3.Ceil() - dont fits, because he rounded vector to whole
