@@ -1,5 +1,4 @@
 using Godot;
-using System;
 
 public class Level
 {
@@ -32,8 +31,8 @@ public class Level
 
 public partial class LevelControl : Node
 {
-    public static Level CurrentLevel;
-    public static int CurrentSteps;
+    public static Level CurrentLevel { get; set; }
+    public static int CurrentSteps { get; set; }
     private Node3D[] LevelsContainer;
     private Node3D LevelObjectsNode;
 

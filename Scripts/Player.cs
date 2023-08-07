@@ -16,7 +16,7 @@ public partial class Player : RigidBody3D {
         public Vector3 targetPosition;      //Target position - position where player moved
     }
 
-    private States playerState { get; set; }
+    private States playerState;
     private Target movementTarget;
 
     public override void _Ready() {
@@ -111,9 +111,7 @@ public partial class Player : RigidBody3D {
         playerState = States.OUT_WORLD;
     }
 
-    public void EnterInLevel() {
-        playerState = States.NORMAL;
-    }
+    public void EnterInLevel() => playerState = States.NORMAL;
 
     //I did realezation round vector, because I don't find working function
     //Vector3.Ceil() - dont fits, because he rounded vector to whole
