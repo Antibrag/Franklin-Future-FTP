@@ -60,17 +60,18 @@ public partial class Player : RigidBody3D {
             movementTarget.targetDirection = direction;
             movementTarget.targetPosition = RoundVector(Position + movementTarget.targetDirection, 1);  //Round target position to 10
 
-            if (movementTarget.targetPosition.X >= LevelControl.CurrentLevel.GridSize[0].X && movementTarget.targetPosition.X <= LevelControl.CurrentLevel.GridSize[1].X &&
+            /*if (movementTarget.targetPosition.X >= LevelControl.CurrentLevel.GridSize[0].X && movementTarget.targetPosition.X <= LevelControl.CurrentLevel.GridSize[1].X &&
             movementTarget.targetPosition.Z >= LevelControl.CurrentLevel.GridSize[0].Z && movementTarget.targetPosition.Z <= LevelControl.CurrentLevel.GridSize[1].Z) {
-                /*foreach (var obj in LevelControl.CurrentLevel.Objects)
+                foreach (var obj in LevelControl.CurrentLevel.Objects)
                 {                    
                     if (movementTarget.targetPosition.X == obj.Position.X && movementTarget.targetPosition.Z == obj.Position.Z) {
                         if (((string)obj.Name).Contains("Wall"))
                             return;                     
                     }
-                }*/
+                }
 
                 LevelControl.CurrentSteps--;
+            
 
                 if (LevelControl.CurrentSteps < 0) {
                     playerState = States.DEATH;
@@ -80,9 +81,10 @@ public partial class Player : RigidBody3D {
                 playerState = States.MOVEMENT; 
             }  
             else 
-                GD.PushWarning("Out of a level!");
+                GD.PushWarning("Out of a level!"); 
+            */
                
-        }
+        } 
     }
 
     private void Move() {
