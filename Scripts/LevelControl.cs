@@ -1,17 +1,21 @@
 using Godot;
+using System.Collections.Generic;
 
 public class Level
 {
     public string Name { get; set; }
     public int Id { get; set; }
-    public int Steps { get; set; }
-    public int CurrentSteps { get; set; }
+    public Dictionary<string, int> Steps { get; set; }
     public bool IsComplete { get; set; }
 
-    public Level(string name, int id, Vector3[] gridSize, int steps, Node3D[] objects) {
+    public Level(string name, int id, int steps) {
         Name = name;
         Id = id;
-        Steps = steps;
+
+        Steps = new Dictionary<string, int> {
+            {"C_LevelSteps", steps},
+            {"CurrentSteps", steps}
+        };
     }
 
     public void GetLevelInfo() {
@@ -26,7 +30,7 @@ public class Level
 public partial class LevelControl : Node
 {
     public static Level CurrentLevel { get; set; }
-    public static int CurrentSteps { get; set; }
+
     private Node3D[] LevelsContainer;
     private Node3D LevelObjectsNode;
 
@@ -54,12 +58,8 @@ public partial class LevelControl : Node
         CurrentLevel = new(
             (string)currentLevel.GetMeta("Name"),
             (int)currentLevel.GetMeta("Id"),
-            (Vector3[])currentLevel.GetMeta("GridSize"),
-            (int)currentLevel.GetMeta("Steps"),
-            new Node3D[LevelObjectsNode.GetChildCount()]
+            (int)currentLevel.GetMeta("Steps")
         );
-
-        CurrentSteps = CurrentLevel.Steps;
 
         currentLevel.Position = Vector3.Zero;
     }

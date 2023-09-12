@@ -60,6 +60,8 @@ public partial class Player : RigidBody3D {
             movementTarget.targetDirection = direction;
             movementTarget.targetPosition = RoundVector(Position + movementTarget.targetDirection, 1);  //Round target position to 10
 
+
+
             /*if (movementTarget.targetPosition.X >= LevelControl.CurrentLevel.GridSize[0].X && movementTarget.targetPosition.X <= LevelControl.CurrentLevel.GridSize[1].X &&
             movementTarget.targetPosition.Z >= LevelControl.CurrentLevel.GridSize[0].Z && movementTarget.targetPosition.Z <= LevelControl.CurrentLevel.GridSize[1].Z) {
                 foreach (var obj in LevelControl.CurrentLevel.Objects)
@@ -95,7 +97,7 @@ public partial class Player : RigidBody3D {
             LinearVelocity = movementTarget.targetDirection;
         else {
             LinearVelocity = Vector3.Zero;
-            GD.Print(LevelControl.CurrentSteps);
+            GD.Print(LevelControl.CurrentLevel.Steps["CurrentSteps"]);
             playerState = States.NORMAL;                
         }                
     }
@@ -103,7 +105,7 @@ public partial class Player : RigidBody3D {
     private void Death() {
         GD.Print("Death");
         Position = GetNode<Node3D>("/root/Main/LevelContainer/Level-" + LevelControl.CurrentLevel.Id + "/LevelObjects/Spawn").Position;
-        LevelControl.CurrentSteps = LevelControl.CurrentLevel.Steps;
+        LevelControl.CurrentLevel.Steps["CurrentSteps"] = LevelControl.CurrentLevel.Steps["C_LevelSteps"];
         playerState = States.NORMAL;
     }
 
