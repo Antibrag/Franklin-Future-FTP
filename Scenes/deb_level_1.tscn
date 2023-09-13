@@ -8,7 +8,6 @@
 [node name="Level--2" type="Node3D"]
 metadata/Name = "Debug Level 1"
 metadata/Id = -2
-metadata/GridSize = PackedVector3Array(-2.5, 0, 2.5, 2.5, 0, -2.5)
 metadata/Steps = 10
 metadata/IsComplete = false
 
