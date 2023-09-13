@@ -3,7 +3,7 @@ using System;
 
 public partial class HUD : Control
 {
-    public override void _Process(double delta) => GetNode<Label>("StepsCount").Text = "Steps:\n" + Convert.ToString(LevelControl.CurrentSteps);
+    public override void _Process(double delta) => GetNode<Label>("StepsCount").Text = "Steps:\n" + Convert.ToString(LevelControl.CurrentLevel.Steps["CurrentSteps"]);
 
     private async void ShowLabel(Label obj, float showSpeed) {
 		obj.Show();
