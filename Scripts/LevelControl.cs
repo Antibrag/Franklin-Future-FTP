@@ -32,14 +32,14 @@ public partial class LevelControl : Node
     public static Level CurrentLevel { get; set; }
 
     private Node3D[] LevelsContainer;
-    private Node3D LevelObjectsNode;
 
-	public override void _Ready() {
+	public override void _Ready()
+    {
         LevelsContainer = new Node3D[ GetNode<Node>("/root/Main/LevelContainer").GetChildCount()];
         for (int i = 0; i < LevelsContainer.Length; i++)
             LevelsContainer[i] = (Node3D)GetNode<Node>("/root/Main/LevelContainer").GetChild(i);
 
-        DataControl.LoadLevels(LevelsContainer);
+        DataControl.LoadLevelsData(LevelsContainer);
         LoadLastLevel();
     }
 
@@ -53,8 +53,8 @@ public partial class LevelControl : Node
         GetNode<Player>("/root/Main/Player").Show();
     }    
 
-    private void InitCurrentLevel(Node3D currentLevel) {
-        LevelObjectsNode = GetNode<Node3D>(currentLevel.GetPath() + "/LevelObjects");
+    private void InitCurrentLevel(Node3D currentLevel)
+    {
         CurrentLevel = new(
             (string)currentLevel.GetMeta("Name"),
             (int)currentLevel.GetMeta("Id"),
@@ -66,7 +66,8 @@ public partial class LevelControl : Node
 
     //NOTE!!!
     //Add SaveLevels() on finish player
-    public void PlayerFinished(Node3D body) {
+    public void PlayerFinished(Node3D body) 
+    {
         GD.Print("You win!");
         GetNode<Player>("/root/Main/Player").LeaveFromLevel();
     }
