@@ -50,18 +50,20 @@ public partial class LevelControl : Node
             if ((bool)level.GetMeta("IsComplete") == false)
                 InitCurrentLevel(level);  
         }
+
         GetNode<Player>("/root/Main/Player").Show();
     }    
 
-    private void InitCurrentLevel(Node3D currentLevel)
+    private void InitCurrentLevel(Node3D LocalCurrentLevel)
     {
         CurrentLevel = new(
-            (string)currentLevel.GetMeta("Name"),
-            (int)currentLevel.GetMeta("Id"),
-            (int)currentLevel.GetMeta("Steps")
+            (string)LocalCurrentLevel.GetMeta("Name"),
+            (int)LocalCurrentLevel.GetMeta("Id"),
+            (int)LocalCurrentLevel.GetMeta("Steps")
         );
 
-        currentLevel.Position = Vector3.Zero;
+        GetNode<HUD>("/root/Main/HUD").ShowLevelName(CurrentLevel.Name);
+        LocalCurrentLevel.Position = Vector3.Zero;
     }
 
     //NOTE!!!
