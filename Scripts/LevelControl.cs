@@ -47,10 +47,12 @@ public partial class LevelControl : Node
     {
         foreach (Node3D level in LevelsContainer)
         {
-            if ((bool)level.GetMeta("IsComplete") == false)
-                InitCurrentLevel(level);  
+            if ((bool)level.GetMeta("IsComplete") == false) 
+            {
+                InitCurrentLevel(level);
+                break;
+            }   
         }
-
         GetNode<Player>("/root/Main/Player").Show();
     }    
 
