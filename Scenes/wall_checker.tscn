@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://c5xf04idngych"]
+
+[ext_resource type="Script" path="res://Scripts/WallChecker.cs" id="1_hlfcj"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ebtrh"]
+size = Vector3(0.1, 0.1, 0.1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_gd4tv"]
+top_radius = 0.2
+bottom_radius = 0.2
+height = 3.0
+
+[node name="WallChecker" type="Area3D"]
+script = ExtResource("1_hlfcj")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_ebtrh")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+mesh = SubResource("CylinderMesh_gd4tv")
+
+[connection signal="area_entered" from="." to="." method="OnCheckerEntered_Area"]
+[connection signal="area_exited" from="." to="." method="OnCheckerExited_Area"]

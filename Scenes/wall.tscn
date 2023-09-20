@@ -1,18 +1,13 @@
-[gd_scene load_steps=5 format=3 uid="uid://b251735pqmllb"]
+[gd_scene load_steps=3 format=3 uid="uid://b251735pqmllb"]
 
-[sub_resource type="Gradient" id="Gradient_oeu11"]
+[sub_resource type="BoxMesh" id="BoxMesh_llsrt"]
 
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_t3xw6"]
-gradient = SubResource("Gradient_oeu11")
+[sub_resource type="BoxShape3D" id="BoxShape3D_knduc"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mb17b"]
-ao_light_affect = 1.0
-ao_texture = SubResource("GradientTexture1D_t3xw6")
-backlight = Color(1, 1, 1, 1)
+[node name="Wall" type="Area3D" groups=["Wall"]]
 
-[sub_resource type="BoxMesh" id="BoxMesh_jhcrf"]
-material = SubResource("StandardMaterial3D_mb17b")
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_llsrt")
 
-[node name="Wall" type="MeshInstance3D"]
-transform = Transform3D(1.07, 0, 0, 0, 1.07, 0, 0, 0, 1.07, 0, 0, 0)
-mesh = SubResource("BoxMesh_jhcrf")
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_knduc")
