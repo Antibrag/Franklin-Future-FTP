@@ -1,9 +1,16 @@
-[gd_scene load_steps=3 format=3 uid="uid://66n301ueoius"]
+[gd_scene load_steps=5 format=3 uid="uid://66n301ueoius"]
 
 [ext_resource type="Script" path="res://Scripts/Menu.cs" id="1_pwool"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_0afvq"]
 font_size = 64
+
+[sub_resource type="InputEventKey" id="InputEventKey_maxrf"]
+device = -1
+keycode = 4194309
+
+[sub_resource type="Shortcut" id="Shortcut_63mjf"]
+events = [SubResource("InputEventKey_maxrf")]
 
 [node name="Menu" type="Node"]
 script = ExtResource("1_pwool")
@@ -24,7 +31,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-<<<<<<< Updated upstream
 [node name="Background" type="ColorRect" parent="ActivitiesMenu"]
 layout_mode = 1
 anchors_preset = 15
@@ -34,8 +40,6 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 1)
 
-=======
->>>>>>> Stashed changes
 [node name="GameName" type="Label" parent="ActivitiesMenu"]
 layout_mode = 1
 anchors_preset = 5
@@ -64,6 +68,7 @@ offset_right = 128.0
 offset_bottom = 36.0
 grow_horizontal = 2
 grow_vertical = 2
+shortcut = SubResource("Shortcut_63mjf")
 text = "Start"
 
 [connection signal="pressed" from="ActivitiesMenu/StartButton" to="." method="OnStartButtonPressed"]
