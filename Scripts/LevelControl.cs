@@ -39,7 +39,7 @@ public partial class LevelControl : Node
         for (int i = 0; i < LevelsContainer.Length; i++)
             LevelsContainer[i] = (Node3D)GetNode<Node>("/root/Main/LevelContainer").GetChild(i);
 
-        DataControl.LoadLevelsData(LevelsContainer);
+        DataControl.LoadDataLevels(LevelsContainer);
         LoadLastLevel();
     }
 
@@ -64,15 +64,10 @@ public partial class LevelControl : Node
             (int)LocalCurrentLevel.GetMeta("Steps")
         );
 
-        GetNode<HUD>("/root/Main/HUD").ShowLevelName(CurrentLevel.Name);
+        GetNode<HUD>("/root/Main/HUD").ShowEleperator(CurrentLevel.Name);
         LocalCurrentLevel.Position = Vector3.Zero;
     }
 
     //NOTE!!!
     //Add SaveLevels() on finish player
-    public void PlayerFinished(Node3D body) 
-    {
-        GD.Print("You win!");
-        GetNode<Player>("/root/Main/Player").LeaveFromLevel();
-    }
 }

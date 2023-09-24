@@ -17,7 +17,7 @@ public static class DataControl
         file.StoreLine(Json.Stringify(dict));
     }
 
-    public static void LoadLevels(Node[] levels) 
+    public static void LoadDataLevels(Node[] levels) 
     {
         using var file = FileAccess.Open(LevelsDataSavePath, FileAccess.ModeFlags.Read);
         if (!FileAccess.FileExists(LevelsDataSavePath)) 
