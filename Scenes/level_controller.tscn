@@ -4,3 +4,6 @@
 
 [node name="LevelController" type="Node"]
 script = ExtResource("1_xk38i")
+
+[node name="ChangeLevelTimer" type="Timer" parent="."]
+wait_time = 2.0

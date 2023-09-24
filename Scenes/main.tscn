@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://dytsvqived3qf"]
+[gd_scene load_steps=8 format=3 uid="uid://dytsvqived3qf"]
 
 [ext_resource type="PackedScene" uid="uid://d16vptgoyn2b5" path="res://Scenes/hud.tscn" id="1_jmm8t"]
 [ext_resource type="PackedScene" uid="uid://lc8bh7vyqx8" path="res://Scenes/player.tscn" id="2_8pauf"]
 [ext_resource type="PackedScene" uid="uid://cj8ot6n7qyn1j" path="res://Scenes/deb_level_1.tscn" id="2_lb03k"]
 [ext_resource type="PackedScene" uid="uid://da2lvtq5fbrhy" path="res://Scenes/deb_level_0.tscn" id="3_4q500"]
 [ext_resource type="PackedScene" uid="uid://b40w4rdxutafm" path="res://Scenes/level_controller.tscn" id="3_5hcjw"]
+[ext_resource type="PackedScene" uid="uid://c5xf04idngych" path="res://Scenes/wall_checker.tscn" id="6_lpmhe"]
 
 [sub_resource type="Environment" id="Environment_tchex"]
 background_mode = 1
@@ -28,6 +29,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 0, 10)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 1, 2.5)
 axis_lock_linear_y = true
 axis_lock_angular_y = true
+
+[node name="WallChecker" parent="." instance=ExtResource("6_lpmhe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 10)
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(0.707107, -0.454519, 0.541675, 0, 0.766044, 0.642788, -0.707107, -0.454519, 0.541675, 5, 6, 5)

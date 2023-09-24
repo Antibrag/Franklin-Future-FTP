@@ -8,6 +8,14 @@ font_size = 64
 [node name="Menu" type="Node"]
 script = ExtResource("1_pwool")
 
+[node name="Background" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
 [node name="ActivitiesMenu" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 15
@@ -16,6 +24,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
+<<<<<<< Updated upstream
 [node name="Background" type="ColorRect" parent="ActivitiesMenu"]
 layout_mode = 1
 anchors_preset = 15
@@ -25,6 +34,8 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 1)
 
+=======
+>>>>>>> Stashed changes
 [node name="GameName" type="Label" parent="ActivitiesMenu"]
 layout_mode = 1
 anchors_preset = 5
