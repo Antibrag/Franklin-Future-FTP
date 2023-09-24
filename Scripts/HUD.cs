@@ -3,9 +3,14 @@ using System;
 
 public partial class HUD : Control
 {
-    public override void _Process(double delta) => GetNode<Label>("StepsCount").Text = "Steps:\n" + Convert.ToString(LevelControl.CurrentLevel.Steps["CurrentSteps"]);
+    public override void _Process(double delta) 
+	{
+		GetNode<Label>("FPS").Text = $"FPS: {Engine.GetFramesPerSecond()}";
+		GetNode<Label>("MemoryUse").Text = $"Memory use: {(float)OS.GetStaticMemoryUsage() / 1024 / 1024}";
+		GetNode<Label>("StepsCount").Text = "Steps:\n" + Convert.ToString(LevelControl.CurrentLevel.Steps["CurrentSteps"]);
+	}
 
-    private async void ShowLabel(Label obj, float showSpeed) {
+    private async void ShowObj(Control obj, float showSpeed) {
 		obj.Show();
 		for (float i = 0; i <= 1; i += showSpeed)
         {
@@ -14,7 +19,7 @@ public partial class HUD : Control
         }
 	}
 
-	private async void HideLabel(Label obj, float showSpeed) {
+	private async void HideObj(Control obj, float showSpeed) {
 		for (float i = 1; i >= 0; i -= showSpeed)
         {
             obj.Modulate = new Color(obj.Modulate.R, obj.Modulate.G, obj.Modulate.B, i);
@@ -23,13 +28,13 @@ public partial class HUD : Control
 		obj.Hide();
 	}
 
-	public async void ShowLevelName(string name) {
-		Label LevelNameLabel = GetNode<Label>("LevelName");
-		LevelNameLabel.Text = name;
+	public async void ShowEleperator(string text) {
+		Label Eleperator = GetNode<Label>("Eleperator");
+		Eleperator.Text = text;
 
 		await ToSignal(GetTree().CreateTimer(1), "timeout");
-		ShowLabel(LevelNameLabel, 0.01f);
+		ShowObj(Eleperator, 0.01f);
 		await ToSignal(GetTree().CreateTimer(2), "timeout");
-		HideLabel(LevelNameLabel, 0.01f);
+		HideObj(Eleperator, 0.01f);
 	}
 }

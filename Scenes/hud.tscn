@@ -45,3 +45,19 @@ offset_bottom = 171.0
 grow_horizontal = 2
 text = "LevelName"
 label_settings = SubResource("LabelSettings_d77ft")
+
+[node name="FPS" type="Label" parent="."]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 111.0
+offset_bottom = 34.0
+text = "FPS: Disabled"
+
+[node name="MemoryUse" type="Label" parent="."]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 32.0
+offset_right = 48.0
+offset_bottom = 55.0
+text = "Memory use: Disabled"
