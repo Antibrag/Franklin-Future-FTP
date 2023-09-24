@@ -10,7 +10,8 @@ public partial class HUD : Control
 		GetNode<Label>("StepsCount").Text = "Steps:\n" + Convert.ToString(LevelControl.CurrentLevel.Steps["CurrentSteps"]);
 	}
 
-    private async void ShowObj(Control obj, float showSpeed) {
+    private async void ShowObj(Control obj, float showSpeed) 
+	{
 		obj.Show();
 		for (float i = 0; i <= 1; i += showSpeed)
         {
@@ -19,7 +20,8 @@ public partial class HUD : Control
         }
 	}
 
-	private async void HideObj(Control obj, float showSpeed) {
+	private async void HideObj(Control obj, float showSpeed) 
+	{
 		for (float i = 1; i >= 0; i -= showSpeed)
         {
             obj.Modulate = new Color(obj.Modulate.R, obj.Modulate.G, obj.Modulate.B, i);
@@ -28,11 +30,27 @@ public partial class HUD : Control
 		obj.Hide();
 	}
 
-	public async void ShowEleperator(string text) {
+	public async void ShowFinishRect(string FinishText = "Level Complete") 
+	{
+		Label Eleperator = GetNode<Label>("Eleperator");
+		Eleperator.Text = FinishText;
+
+		//await ToSignal(GetTree().CreateTimer(1), "timeout");
+		ShowObj(Eleperator, 0.005f);
+		ShowObj(GetNode<ColorRect>("FinishRect"), 0.005f);
+
+		await ToSignal(GetTree().CreateTimer(5), "timeout");
+
+		HideObj(Eleperator, 0.005f);
+		HideObj(GetNode<ColorRect>("FinishRect"), 0.005f);
+	}
+
+	public async void ShowEleperator(string text) 
+	{
 		Label Eleperator = GetNode<Label>("Eleperator");
 		Eleperator.Text = text;
 
-		await ToSignal(GetTree().CreateTimer(1), "timeout");
+		//await ToSignal(GetTree().CreateTimer(1), "timeout");
 		ShowObj(Eleperator, 0.01f);
 		await ToSignal(GetTree().CreateTimer(2), "timeout");
 		HideObj(Eleperator, 0.01f);

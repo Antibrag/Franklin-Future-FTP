@@ -32,20 +32,6 @@ label_settings = SubResource("LabelSettings_uj5gj")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="LevelName" type="Label" parent="."]
-visible = false
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -24.0
-offset_top = 64.0
-offset_right = 24.0
-offset_bottom = 171.0
-grow_horizontal = 2
-text = "LevelName"
-label_settings = SubResource("LabelSettings_d77ft")
-
 [node name="FPS" type="Label" parent="."]
 layout_mode = 0
 offset_left = 8.0
@@ -61,3 +47,27 @@ offset_top = 32.0
 offset_right = 48.0
 offset_bottom = 55.0
 text = "Memory use: Disabled"
+
+[node name="FinishRect" type="ColorRect" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Eleperator" type="Label" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -211.0
+offset_top = 64.0
+offset_right = 211.0
+offset_bottom = 174.0
+grow_horizontal = 2
+text = "LevelName"
+label_settings = SubResource("LabelSettings_d77ft")
