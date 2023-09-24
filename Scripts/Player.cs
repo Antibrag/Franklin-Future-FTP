@@ -1,15 +1,18 @@
 using Godot;
 using System;
 
-public partial class Player : RigidBody3D {
-    private enum States {
+public partial class Player : RigidBody3D 
+{
+    private enum States 
+    {
         NORMAL,    
         MOVEMENT,   
         DEATH,       
         OUT_WORLD
     }
 
-    private struct Target {
+    private struct Target 
+    {
         public Vector3 targetDirection;
         public Vector3 targetPosition;
     }
@@ -20,22 +23,26 @@ public partial class Player : RigidBody3D {
     private States playerState;
     private Target movementTarget;
 
-    public override void _Ready() {
+    public override void _Ready() 
+    {
         playerState = States.NORMAL;
     }
 
-    public override void _Process(double delta) {
+    public override void _Process(double delta) 
+    {
         StatesControl(playerState);
     }
 
-    public void UnFreezePlayer() {
+    public void UnFreezePlayer() 
+    {
         Show();
         Position = GetNode<Node3D>("/root/Main/LevelContainer/Level-" + LevelControl.CurrentLevel.Id + "/LevelObjects/Spawn").Position;
         playerState = States.NORMAL;
         GD.Print(Position);
     }
 
-    private void StatesControl(States state) {
+    private void StatesControl(States state) 
+    {
         switch (state) {
             case States.NORMAL:
                 CheckPlayerInput();
@@ -51,7 +58,8 @@ public partial class Player : RigidBody3D {
         }
     }
 
-    private void CheckPlayerInput() {
+    private void CheckPlayerInput() 
+    {
         if (!GetNode<Timer>("MoveTimer").IsStopped())
             return;
 
@@ -70,26 +78,32 @@ public partial class Player : RigidBody3D {
         } 
     }
 
-    private void Move() {
+    private void Move()
+    {
+        if (RoundVector(Position, 1) == GetNode<Area3D>("/root/Main/LevelContainer/Level-" + LevelControl.CurrentLevel.Id + "/Finish").Position)
+            Finish();
+
         if (RoundVector(Position, 1) != movementTarget.targetPosition)
             LinearVelocity = movementTarget.targetDirection;
         else
         {
             LinearVelocity = Vector3.Zero;
-            GD.Print(LevelControl.CurrentLevel.Steps["CurrentSteps"]);
             playerState = States.NORMAL;                
         }                
     }
 
-    private void Death() {
+    private void Death() 
+    {
         GD.Print("Death");
         Position = GetNode<Node3D>("/root/Main/LevelContainer/Level-" + LevelControl.CurrentLevel.Id + "/Spawn").Position;
         LevelControl.CurrentLevel.Steps["CurrentSteps"] = LevelControl.CurrentLevel.Steps["C_LevelSteps"];
         playerState = States.NORMAL;
     }
 
-    public void LeaveFromLevel() {
-        LinearVelocity = Vector3.Zero;
+
+
+    private void Finish()
+    {
         playerState = States.OUT_WORLD;
     }
 
@@ -113,21 +127,13 @@ public partial class Player : RigidBody3D {
 
     public void EnterInLevel() => playerState = States.NORMAL;
 
-    private static Vector3 RoundVector(Vector3 vector, int digits) {
-        Vector3 result = Vector3.Zero;
-        for (int i = 0; i < 3; i++) {
-            switch (i) {
-                case 0:
-                    result.X = MathF.Round(vector.X, digits);
-                    break;
-                case 1:
-                    result.Y = MathF.Round(vector.Y, digits);
-                    break;
-                case 2:
-                    result.Z = MathF.Round(vector.Z, digits);
-                    break;
-            }
-        }
-        return result;
+    private static Vector3 RoundVector(Vector3 vector, int digits) 
+    {
+        return new Vector3
+        (
+            MathF.Round(vector.X, digits),
+            MathF.Round(vector.Y, digits),
+            MathF.Round(vector.Z, digits)
+        );
     }
 }
