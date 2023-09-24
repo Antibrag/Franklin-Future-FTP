@@ -15,7 +15,7 @@ metadata/IsComplete = false
 [node name="Plane" parent="." instance=ExtResource("1_tyfow")]
 
 [node name="Finish" parent="." instance=ExtResource("2_5xa11")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 0.5, -2.5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 1, -2.5)
 
 [node name="Spawn" parent="." instance=ExtResource("3_ofh7g")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 1, 2.5)

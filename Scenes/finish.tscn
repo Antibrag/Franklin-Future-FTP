@@ -2,7 +2,7 @@
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_b2wpp"]
 
-[node name="Finish" type="Area3D"]
+[node name="Finish" type="Area3D" groups=["Finish"]]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("BoxShape3D_b2wpp")
