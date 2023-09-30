@@ -4,10 +4,13 @@ using System.Collections.Generic;
 public struct Level
 {
     public Node3D Node { get; set; }
+    public Vector3 StartPosition { get; set; }
     public Dictionary<string, int> Steps { get; set; }
 
     public Level(Node3D node) {
         Node = node;
+
+        StartPosition = node.Position;
 
         Steps = new Dictionary<string, int> {
             {"C_LevelSteps", (int)Node.GetMeta("Steps")},
