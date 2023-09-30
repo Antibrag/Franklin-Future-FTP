@@ -1,27 +1,24 @@
 using Godot;
 using System.Collections.Generic;
 
-public class Level
+public struct Level
 {
-    public string Name { get; set; }
-    public int Id { get; set; }
+    public Node3D Node { get; set; }
     public Dictionary<string, int> Steps { get; set; }
-    public bool IsComplete { get; set; }
 
-    public Level(string name, int id, int steps) {
-        Name = name;
-        Id = id;
+    public Level(Node3D node) {
+        Node = node;
 
         Steps = new Dictionary<string, int> {
-            {"C_LevelSteps", steps},
-            {"CurrentSteps", steps}
+            {"C_LevelSteps", (int)Node.GetMeta("Steps")},
+            {"CurrentSteps", (int)Node.GetMeta("Steps")}
         };
     }
 
     public void GetLevelInfo() {
         GD.Print("/--- Current level information ---\\\n");
-        GD.Print("Current level name: " + Name);
-        GD.Print("Current level id: " + Id);
+        GD.Print("Current level name: " + Node.GetMeta("Name"));
+        GD.Print("Current level id: " + Node.GetMeta("Id"));
         GD.Print("Current level count steps: " + Steps);
         GD.Print("Current level grid size: ");
     }
@@ -29,6 +26,7 @@ public class Level
 
 public partial class LevelControl : Node
 {
+    
     public static Level CurrentLevel { get; set; }
 
     private Node3D[] LevelsContainer;
@@ -58,16 +56,9 @@ public partial class LevelControl : Node
 
     private void InitCurrentLevel(Node3D LocalCurrentLevel)
     {
-        CurrentLevel = new(
-            (string)LocalCurrentLevel.GetMeta("Name"),
-            (int)LocalCurrentLevel.GetMeta("Id"),
-            (int)LocalCurrentLevel.GetMeta("Steps")
-        );
+        CurrentLevel = new(LocalCurrentLevel);
 
-        GetNode<HUD>("/root/Main/HUD").ShowEleperator(CurrentLevel.Name);
+        GetNode<HUD>("/root/Main/HUD").ShowEleperator((string)CurrentLevel.Node.GetMeta("Name"));
         LocalCurrentLevel.Position = Vector3.Zero;
     }
-
-    //NOTE!!!
-    //Add SaveLevels() on finish player
 }

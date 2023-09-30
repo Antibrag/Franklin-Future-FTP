@@ -75,7 +75,7 @@ public partial class Player : RigidBody3D
         {
             LinearVelocity = Vector3.Zero;
 
-            if (RoundVector(Position, 1) == GetNode<Area3D>("/root/Main/LevelContainer/Level-" + LevelControl.CurrentLevel.Id + "/Finish").Position)
+            if (RoundVector(Position, 1) == GetNode<Area3D>("/root/Main/LevelContainer/Level-" + (int)LevelControl.CurrentLevel.Node.GetMeta("Id") + "/Finish").Position)
                 Finish();
 
             playerState = States.NORMAL;                
@@ -85,16 +85,19 @@ public partial class Player : RigidBody3D
     private void Death() 
     {
         GD.Print("Death");
-        Position = GetNode<Node3D>("/root/Main/LevelContainer/Level-" + LevelControl.CurrentLevel.Id + "/Spawn").Position;
+        Position = GetNode<Node3D>("/root/Main/LevelContainer/Level-" + (int)LevelControl.CurrentLevel.Node.GetMeta("Id") + "/Spawn").Position;
         LevelControl.CurrentLevel.Steps["CurrentSteps"] = LevelControl.CurrentLevel.Steps["C_LevelSteps"];
         playerState = States.NORMAL;
     }
 
-    private void Finish()
+    private async void Finish()
     {
         playerState = States.OUT_WORLD;
         LevelControl.CurrentLevel.Steps["CurrentSteps"] = 0;
         GetNode<HUD>("/root/Main/HUD").ShowFinishRect();
+
+        await ToSignal(GetTree().CreateTimer(1), "timeout");
+
 
         GD.Print("Finished");
     }
