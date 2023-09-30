@@ -15,12 +15,11 @@ public struct Level
         };
     }
 
-    public void GetLevelInfo() {
-        GD.Print("/--- Current level information ---\\\n");
-        GD.Print("Current level name: " + Node.GetMeta("Name"));
-        GD.Print("Current level id: " + Node.GetMeta("Id"));
-        GD.Print("Current level count steps: " + Steps);
-        GD.Print("Current level grid size: ");
+    public readonly void GetLevelInfo() {
+        GD.Print("/--- Current level information ---\\");
+        GD.Print($"Current level name: {Node.GetMeta("Name")}");
+        GD.Print($"Current level id: {Node.GetMeta("Id")}");
+        GD.Print($"Current level count steps: {Steps["C_LevelSteps"]}");
     }
 }
 
@@ -59,6 +58,7 @@ public partial class LevelControl : Node
         CurrentLevel = new(LocalCurrentLevel);
 
         GetNode<HUD>("/root/Main/HUD").ShowEleperator((string)CurrentLevel.Node.GetMeta("Name"));
+        CurrentLevel.GetLevelInfo();
         LocalCurrentLevel.Position = Vector3.Zero;
     }
 }
