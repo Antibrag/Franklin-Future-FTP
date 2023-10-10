@@ -71,4 +71,13 @@ grow_vertical = 2
 shortcut = SubResource("Shortcut_63mjf")
 text = "Start"
 
+[node name="ResetLevelsButton" type="Button" parent="ActivitiesMenu"]
+layout_mode = 1
+offset_left = 24.0
+offset_top = 24.0
+offset_right = 127.0
+offset_bottom = 55.0
+text = "Reset Levels"
+
 [connection signal="pressed" from="ActivitiesMenu/StartButton" to="." method="OnStartButtonPressed"]
+[connection signal="pressed" from="ActivitiesMenu/ResetLevelsButton" to="." method="OnResetLevelsButtonPressed"]
