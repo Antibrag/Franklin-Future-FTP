@@ -1,0 +1,76 @@
+[gd_scene load_steps=2 format=3 uid="uid://da1jg3u6l48q4"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_8o2ar"]
+size = Vector3(1, 1, 100)
+
+[node name="Grid" type="Node3D"]
+
+[node name="Board_Z" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, 0, 0.01, 0)
+mesh = SubResource("BoxMesh_8o2ar")
+skeleton = NodePath("../..")
+
+[node name="Board_Z2" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, 0.333333, 0.01, 0)
+mesh = SubResource("BoxMesh_8o2ar")
+skeleton = NodePath("../..")
+
+[node name="Board_Z3" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, 0.666667, 0.01, 0)
+mesh = SubResource("BoxMesh_8o2ar")
+skeleton = NodePath("../..")
+
+[node name="Board_Z4" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, 1, 0.01, 0)
+mesh = SubResource("BoxMesh_8o2ar")
+skeleton = NodePath("../..")
+
+[node name="Board_Z5" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, -0.333333, 0.01, 0)
+mesh = SubResource("BoxMesh_8o2ar")
+skeleton = NodePath("../..")
+
+[node name="Board_Z6" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, -0.666667, 0.01, 0)
+mesh = SubResource("BoxMesh_8o2ar")
+skeleton = NodePath("../..")
+
+[node name="Board_Z7" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, -1, 0.01, 0)
+mesh = SubResource("BoxMesh_8o2ar")
+skeleton = NodePath("../..")
+
+[node name="Board_X" type="MeshInstance3D" parent="."]
+transform = Transform3D(-8.74228e-10, 0, -0.02, 0, 0.02, 0, 0.02, 0, -8.74228e-10, 0, 0.01, 0)
+mesh = SubResource("BoxMesh_8o2ar")
+skeleton = NodePath("../..")
+
+[node name="Board_X2" type="MeshInstance3D" parent="."]
+transform = Transform3D(-8.74228e-10, 0, -0.02, 0, 0.02, 0, 0.02, 0, -8.74228e-10, 0, 0.01, -0.333333)
+mesh = SubResource("BoxMesh_8o2ar")
+skeleton = NodePath("../..")
+
+[node name="Board_X3" type="MeshInstance3D" parent="."]
+transform = Transform3D(-8.74228e-10, 0, -0.02, 0, 0.02, 0, 0.02, 0, -8.74228e-10, 0, 0.01, 0.333333)
+mesh = SubResource("BoxMesh_8o2ar")
+skeleton = NodePath("../..")
+
+[node name="Board_X4" type="MeshInstance3D" parent="."]
+transform = Transform3D(-8.74228e-10, 0, -0.02, 0, 0.02, 0, 0.02, 0, -8.74228e-10, 0, 0.01, 0.666667)
+mesh = SubResource("BoxMesh_8o2ar")
+skeleton = NodePath("../..")
+
+[node name="Board_X5" type="MeshInstance3D" parent="."]
+transform = Transform3D(-8.74228e-10, 0, -0.02, 0, 0.02, 0, 0.02, 0, -8.74228e-10, 0, 0.01, -0.666667)
+mesh = SubResource("BoxMesh_8o2ar")
+skeleton = NodePath("../..")
+
+[node name="Board_X6" type="MeshInstance3D" parent="."]
+transform = Transform3D(-8.74228e-10, 0, -0.02, 0, 0.02, 0, 0.02, 0, -8.74228e-10, 0, 0.01, 1)
+mesh = SubResource("BoxMesh_8o2ar")
+skeleton = NodePath("../..")
+
+[node name="Board_X7" type="MeshInstance3D" parent="."]
+transform = Transform3D(-8.74228e-10, 0, -0.02, 0, 0.02, 0, 0.02, 0, -8.74228e-10, 0, 0.01, -1)
+mesh = SubResource("BoxMesh_8o2ar")
+skeleton = NodePath("../..")
