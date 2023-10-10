@@ -36,13 +36,13 @@ public partial class HUD : Control
 		Eleperator.Text = FinishText;
 
 		//await ToSignal(GetTree().CreateTimer(1), "timeout");
-		ShowObj(Eleperator, 0.005f);
-		ShowObj(GetNode<ColorRect>("FinishRect"), 0.005f);
+		ShowObj(Eleperator, 0.05f);
+		ShowObj(GetNode<ColorRect>("FinishRect"), 0.05f);
 
 		await ToSignal(GetTree().CreateTimer(5), "timeout");
 
-		HideObj(Eleperator, 0.005f);
-		HideObj(GetNode<ColorRect>("FinishRect"), 0.005f);
+		HideObj(Eleperator, 0.05f);
+		HideObj(GetNode<ColorRect>("FinishRect"), 0.05f);
 	}
 
 	public async void ShowEleperator(string text) 
