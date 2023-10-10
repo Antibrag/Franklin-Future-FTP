@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://da2lvtq5fbrhy"]
 
-[ext_resource type="PackedScene" uid="uid://doqsiaowhe3as" path="res://Scenes/plane.tscn" id="1_tyfow"]
+[ext_resource type="PackedScene" uid="uid://da1jg3u6l48q4" path="res://Scenes/grid.tscn" id="1_djd3h"]
 [ext_resource type="PackedScene" uid="uid://bo2pdgp0ptin5" path="res://Scenes/finish.tscn" id="2_5xa11"]
 [ext_resource type="PackedScene" uid="uid://diw1rkoanbhuu" path="res://Scenes/spawn.tscn" id="3_ofh7g"]
 [ext_resource type="PackedScene" uid="uid://b251735pqmllb" path="res://Scenes/wall.tscn" id="4_qrogl"]
@@ -12,7 +12,10 @@ metadata/Id = -1
 metadata/Steps = 10
 metadata/IsComplete = false
 
-[node name="Plane" parent="." instance=ExtResource("1_tyfow")]
+[node name="Plane" type="Node3D" parent="."]
+
+[node name="Grid" parent="Plane" instance=ExtResource("1_djd3h")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, 0)
 
 [node name="Finish" parent="." instance=ExtResource("2_5xa11")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 1, -2.5)
