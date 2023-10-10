@@ -92,14 +92,24 @@ public partial class Player : RigidBody3D
 
     private async void Finish()
     {
+        GD.Print("Finished");
+
         playerState = States.OUT_WORLD;
         LevelControl.CurrentLevel.Steps["CurrentSteps"] = 0;
         GetNode<HUD>("/root/Main/HUD").ShowFinishRect();
 
         await ToSignal(GetTree().CreateTimer(1), "timeout");
+        Hide();
 
+        LevelControl.CurrentLevel.Node.SetMeta("IsComplete", true);
+        DataControl.SaveLevels(GetNode<LevelControl>("/root/Main/LevelController").LevelsContainer);
+        LevelControl.CurrentLevel.Node.Position = LevelControl.CurrentLevel.StartPosition;
 
-        GD.Print("Finished");
+        GetNode<LevelControl>("/root/Main/LevelController").LoadLastLevel();
+
+        await ToSignal(GetTree().CreateTimer(1), "timeout");
+
+        Position = GetNode<Node3D>(LevelControl.CurrentLevel.Node.GetPath() + "/Spawn").Position;
     }
 
 	public void MoveTimer_Timeout() 
