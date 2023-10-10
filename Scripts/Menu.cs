@@ -34,6 +34,7 @@ public partial class Menu : Node
 		await ToSignal(GetTree().CreateTimer(1), "timeout");	
 		GetTree().ChangeSceneToFile("res://Scenes/main.tscn");
 	}
+	public void OnResetLevelsButtonPressed() => LevelControl.ResetCompleteLevels = true;
 
 	public void OnStartButtonPressed() => StartGame();
 }

@@ -30,20 +30,25 @@ public partial class LevelControl : Node
 {
     public static Level CurrentLevel { get; set; }
 
+    public static bool ResetCompleteLevels = false;
+
     public Node3D[] LevelsContainer;
 
 	public override void _Ready()
     {
-        LevelsContainer = new Node3D[ GetNode<Node>("/root/Main/LevelContainer").GetChildCount()];
+        LevelsContainer = new Node3D[GetNode<Node>("/root/Main/LevelContainer").GetChildCount()];
 
         for (int i = 0; i < LevelsContainer.Length; i++)
             LevelsContainer[i] = (Node3D)GetNode<Node>("/root/Main/LevelContainer").GetChild(i);
 
+        if (ResetCompleteLevels)
+            DataControl.SaveLevels(LevelsContainer);
+            
         DataControl.LoadDataLevels(LevelsContainer);
         LoadLastLevel();
     }
 
-    private void LoadLastLevel()
+    public void LoadLastLevel()
     {
         foreach (Node3D level in LevelsContainer)
         {
