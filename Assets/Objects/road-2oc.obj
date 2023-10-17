@@ -1,6 +1,6 @@
 # Blender 3.6.4
 # www.blender.org
-mtllib road-oc.mtl
+mtllib road-2oc.mtl
 o Cube.005
 v -0.499500 0.025000 0.498820
 v -0.499500 0.075000 0.498820

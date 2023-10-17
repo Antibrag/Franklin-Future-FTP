@@ -1,14 +1,15 @@
-[gd_scene load_steps=10 format=3 uid="uid://cj8ot6n7qyn1j"]
+[gd_scene load_steps=11 format=3 uid="uid://cj8ot6n7qyn1j"]
 
 [ext_resource type="PackedScene" uid="uid://da1jg3u6l48q4" path="res://Scenes/grid.tscn" id="1_hqqxw"]
 [ext_resource type="PackedScene" uid="uid://bo2pdgp0ptin5" path="res://Scenes/finish.tscn" id="2_pkl6j"]
 [ext_resource type="PackedScene" uid="uid://diw1rkoanbhuu" path="res://Scenes/spawn.tscn" id="3_05jyr"]
 [ext_resource type="PackedScene" uid="uid://b251735pqmllb" path="res://Scenes/wall.tscn" id="4_62qiw"]
 [ext_resource type="PackedScene" uid="uid://dg2xcrwcsyiom" path="res://Scenes/level_outside_wall.tscn" id="5_um6ei"]
-[ext_resource type="ArrayMesh" uid="uid://dl27aiiiuom2k" path="res://Assets/Objects/road-2oc.obj" id="6_ecdxb"]
-[ext_resource type="ArrayMesh" uid="uid://ct51vn3xwopdm" path="res://Assets/Objects/road-2oo.obj" id="7_gp7ly"]
-[ext_resource type="ArrayMesh" uid="uid://b4a8wjq2lfw1n" path="res://Assets/Objects/road-2ooCOR.obj" id="8_rohrf"]
-[ext_resource type="ArrayMesh" uid="uid://dtn4jvf7x8pjt" path="res://Assets/Objects/road-3ooo.obj" id="9_tohr2"]
+[ext_resource type="ArrayMesh" uid="uid://ctl24h08lr77c" path="res://Assets/Objects/road-2oc.obj" id="6_ecdxb"]
+[ext_resource type="ArrayMesh" uid="uid://bxaglter6eh5i" path="res://Assets/Objects/road-2oo.obj" id="7_gp7ly"]
+[ext_resource type="ArrayMesh" uid="uid://cvoltrlgi5cvy" path="res://Assets/Objects/road-2ooCOR.obj" id="8_rohrf"]
+[ext_resource type="ArrayMesh" uid="uid://d1hd5awxgpa08" path="res://Assets/Objects/road-3ooo.obj" id="9_tohr2"]
+[ext_resource type="AudioStream" uid="uid://bngn7unn5006h" path="res://Assets/Sounds/city_sound_1.mp3" id="10_2rfwm"]
 
 [node name="Level--2" type="Node3D"]
 metadata/Name = "Debug Level 1"
@@ -205,3 +206,8 @@ skeleton = NodePath("../../..")
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -2.5, 0, -1.5)
 mesh = ExtResource("9_tohr2")
 skeleton = NodePath("../../..")
+
+[node name="Playback_Sound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("10_2rfwm")
+volume_db = -30.0
+autoplay = true
