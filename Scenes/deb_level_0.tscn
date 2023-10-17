@@ -23,41 +23,43 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 1, -2.5)
 [node name="Spawn" parent="." instance=ExtResource("3_ofh7g")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 1, 2.5)
 
-[node name="Wall" parent="." instance=ExtResource("4_qrogl")]
+[node name="Walls" type="Node3D" parent="."]
+
+[node name="Wall" parent="Walls" instance=ExtResource("4_qrogl")]
 transform = Transform3D(1.07, 0, 0, 0, 1.07, 0, 0, 0, 1.07, -2.5, 0.5, 1.5)
 
-[node name="Wall2" parent="." instance=ExtResource("4_qrogl")]
+[node name="Wall2" parent="Walls" instance=ExtResource("4_qrogl")]
 transform = Transform3D(1.07, 0, 0, 0, 1.07, 0, 0, 0, 1.07, -2.5, 0.5, 0.5)
 
-[node name="Wall3" parent="." instance=ExtResource("4_qrogl")]
+[node name="Wall3" parent="Walls" instance=ExtResource("4_qrogl")]
 transform = Transform3D(1.07, 0, 0, 0, 1.07, 0, 0, 0, 1.07, -0.5, 0.5, 1.5)
 
-[node name="Wall4" parent="." instance=ExtResource("4_qrogl")]
+[node name="Wall4" parent="Walls" instance=ExtResource("4_qrogl")]
 transform = Transform3D(1.07, 0, 0, 0, 1.07, 0, 0, 0, 1.07, -0.5, 0.5, -0.5)
 
-[node name="Wall5" parent="." instance=ExtResource("4_qrogl")]
+[node name="Wall5" parent="Walls" instance=ExtResource("4_qrogl")]
 transform = Transform3D(1.07, 0, 0, 0, 1.07, 0, 0, 0, 1.07, 0.5, 0.5, -0.5)
 
-[node name="Wall6" parent="." instance=ExtResource("4_qrogl")]
+[node name="Wall6" parent="Walls" instance=ExtResource("4_qrogl")]
 transform = Transform3D(1.07, 0, 0, 0, 1.07, 0, 0, 0, 1.07, 1.5, 0.5, -0.5)
 
-[node name="Wall7" parent="." instance=ExtResource("4_qrogl")]
+[node name="Wall7" parent="Walls" instance=ExtResource("4_qrogl")]
 transform = Transform3D(-4.67712e-08, 0, 1.07, 0, 1.07, 0, -1.07, 0, -4.67712e-08, 1.5, 0.5, 2.5)
 
-[node name="Wall8" parent="." instance=ExtResource("4_qrogl")]
+[node name="Wall8" parent="Walls" instance=ExtResource("4_qrogl")]
 transform = Transform3D(-4.67712e-08, 0, 1.07, 0, 1.07, 0, -1.07, 0, -4.67712e-08, 1.5, 0.5, -1.5)
 
-[node name="Wall9" parent="." instance=ExtResource("4_qrogl")]
+[node name="Wall9" parent="Walls" instance=ExtResource("4_qrogl")]
 transform = Transform3D(1.07, 0, 0, 0, 1.07, 0, 0, 0, 1.07, -0.5, 0.5, 0.5)
 
-[node name="LevelOutsideWall" parent="." instance=ExtResource("5_b2edf")]
+[node name="LevelOutsideWall" parent="Walls" instance=ExtResource("5_b2edf")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00989723, 0.5, 3.48795)
 
-[node name="LevelOutsideWall2" parent="." instance=ExtResource("5_b2edf")]
+[node name="LevelOutsideWall2" parent="Walls" instance=ExtResource("5_b2edf")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00989723, 0.5, -3.51205)
 
-[node name="LevelOutsideWall3" parent="." instance=ExtResource("5_b2edf")]
+[node name="LevelOutsideWall3" parent="Walls" instance=ExtResource("5_b2edf")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 3.4901, 0.5, -0.0120492)
 
-[node name="LevelOutsideWall4" parent="." instance=ExtResource("5_b2edf")]
+[node name="LevelOutsideWall4" parent="Walls" instance=ExtResource("5_b2edf")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -3.50744, 0.512661, -0.0156398)
