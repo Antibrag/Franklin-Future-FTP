@@ -1,14 +1,15 @@
-[gd_scene load_steps=4 format=3 uid="uid://c5xf04idngych"]
+[gd_scene load_steps=5 format=3 uid="uid://c5xf04idngych"]
 
 [ext_resource type="Script" path="res://Scripts/WallChecker.cs" id="1_hlfcj"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ebtrh"]
 size = Vector3(0.1, 0.1, 0.1)
 
-[sub_resource type="CylinderMesh" id="CylinderMesh_gd4tv"]
-top_radius = 0.2
-bottom_radius = 0.2
-height = 3.0
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_dyhgy"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_fhjbc"]
+radius = 0.01
+height = 0.02
 
 [node name="WallChecker" type="Area3D"]
 script = ExtResource("1_hlfcj")
@@ -16,9 +17,22 @@ script = ExtResource("1_hlfcj")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("BoxShape3D_ebtrh")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-mesh = SubResource("CylinderMesh_gd4tv")
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+light_color = Color(0.435294, 1, 1, 1)
+shadow_enabled = true
+omni_range = 1.0
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+visible = false
+amount = 12
+lifetime = 2.0
+speed_scale = 10.0
+randomness = 0.1
+fixed_fps = 60
+process_material = SubResource("ShaderMaterial_dyhgy")
+draw_pass_1 = SubResource("SphereMesh_fhjbc")
 
 [connection signal="area_entered" from="." to="." method="OnCheckerEntered_Area"]
 [connection signal="area_exited" from="." to="." method="OnCheckerExited_Area"]
