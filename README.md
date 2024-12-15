@@ -1,3 +1,5 @@
+Project is currently frozen
+
 # Franklin Future - Electric Future
   Hello everybody! This game on working stage.
 
